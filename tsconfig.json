@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "noEmit": true,
+    "lib": ["dom", "esnext"],
+    "jsx": "react-native",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": true,
+    "sourceMap": true,
+    "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "resolveJsonModule": true,
+    "baseUrl": "src",
+    "paths": {
+      "src/*": ["./*"],
+      "components/*": ["components/*"],
+      "utils/*": ["utils/*"],
+      "constants/*": ["constants/*"],
+      "assets/*": ["assets/*"],
+      "services/*": ["services/*"],
+      "store/*": ["store/*"],
+      "routing": ["routing"]
+    }
+  },
+  "exclude": ["node_modules", "server", "**/*.spec.ts", "**/_*/**"]
+}

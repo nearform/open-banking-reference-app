@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Polaris: Documentation</title>
+    <meta
+      http-equiv="X-UA-Compatible"
+      content="IE=edge,chrome=1"
+    />
+    <meta
+      name="description"
+      content="Documentation for Polaris"
+    />
+    <meta
+      name="viewport"
+      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+    />
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/docsify-themeable@0.6.2/dist/css/theme-defaults.css"
+    />
+    <link
+      rel="stylesheet"
+      href="//unpkg.com/@nearform/docsify-theme-nearform@2.0.1/theme-nearform.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="img/favicon.ico"
+      >
+    <link rel="stylesheet" type="text/css" href="styles.css">
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="https://nf-accelerate.netlify.com/">
+        <picture id="logo" href="https://nf-accelerate.netlify.com/">
+          <source media="(max-width: 660px)" srcset="img/N_Logo.svg">
+          <img src="img/NF Logo.svg" alt="NF Logo" style="width:auto;">
+        </picture>
+      </a>
+      <div id="nav-right">
+        <a class="nav-link" href="https://nf-accelerate.netlify.com/">Home</a>
+        <a class="nav-link" href="https://nf-accelerate.netlify.com/about/">About</a>
+        <button id="accelerators-view" class="ignore-click-off">Accelerators<img id="icon" src="img/Path.svg" alt="Expand" class="arrow arrow-down"></button>
+        <button id="accelerators-view-mobile" class="ignore-click-off"><img id="icon-mobile" src="img/Path.svg" alt="Expand" class="arrow arrow-down"></button>
+      </div>
+    </div>
+    <div id="panel" class="hidden">
+      <div id="blank-panel-space"></div>
+      <span>
+        <form style="display: inline" action="https://nf-titus.netlify.com/#/" method="get">
+          <button class="panel-link titus">
+            <img class="ignore-click-off hidden" src="img/TITUS.svg" alt="TITUS Logo" >
+            <br>
+            <text class="ignore-click-off">SaaS</text>
+          </button>
+        </form>
+        <form style="display: inline" action="https://nf-quantum.netlify.com/#/" method="get">
+          <button class="panel-link quantum">
+            <img class="ignore-click-off hidden" src="img/QUANTUM.svg" alt="QUANTUM Logo" >
+            <br>
+            <text class="ignore-click-off">DESIGN SYSTEM</text>
+          </button>
+        </form>
+        <form style="display: inline" action="https://nf-orion.netlify.com/#/" method="get">
+          <button class="panel-link orion">
+            <img class="ignore-click-off hidden" src="img/ORION.svg" alt="ORION Logo" >
+            <br>
+            <text class="ignore-click-off">CMS</text>
+          </button>
+        </form>
+      </span>
+      <span>
+        <form style="display: inline" action="https://nf-taurus.netlify.com/#/" method="get">
+          <button class="panel-link taurus">
+            <img class="ignore-click-off hidden" src="img/TAURUS.svg" alt="TAURUS Logo" >
+            <br>
+            <text class="ignore-click-off">INFRASTRUCTURE</text>
+          </button>
+        </form>
+        <form style="display: inline" action="https://nf-polaris.netlify.com/#/" method="get">
+          <button class="panel-link polaris">
+            <img class="ignore-click-off hidden" src="img/POLARIS.svg" alt="POLARIS Logo" >
+            <br>
+            <text class="ignore-click-off">MOBILE</text>
+          </button>
+        </form>
+        <form style="display: inline" action="https://nf-mira.netlify.com/#/" method="get">
+          <button class="panel-link mira">
+            <img class="ignore-click-off hidden" src="img/MIRA.svg" alt="MIRA Logo" >
+            <br>
+            <text class="ignore-click-off">SERVERLESS</text>
+          </button>
+        </form>
+      </span>
+    </div>
+
+    <div id="app"></div>
+
+    <script>
+
+      window.$docsify = {
+        name: 'Polaris',
+        logo: 'img/Accel_Logo_Polaris.svg',
+        repo: 'https://github.com/nearform/polaris',
+        loadSidebar: '_sidebar',
+        auto2top: true,
+        subMaxLevel: 2
+      }
+
+      var open = false;
+      var icon = document.getElementById('icon');
+      var iconMobile = document.getElementById('icon-mobile');
+      var panel = document.getElementById('panel');
+      var panelLinkImagesHidden = document.getElementsByClassName('ignore-click-off hidden');
+      var panelLinkImagesVisible = document.getElementsByClassName('ignore-click-off visible');
+
+      var viewAcceleratorsButton = document.getElementById('accelerators-view')
+      var viewAcceleratorsButtonMobile = document.getElementById('accelerators-view-mobile')
+
+      const clickHandle = function() {
+
+        if(open){
+          icon.className = 'arrow arrow-down';
+          iconMobile.className = 'arrow arrow-down';
+          panel.className = 'hidden';
+          while(panelLinkImagesVisible.length) {
+            panelLinkImagesVisible[0].className = 'ignore-click-off hidden'
+          }
+        } else{
+          icon.className = 'arrow arrow-down open';
+          iconMobile.className = 'arrow arrow-down open';
+          panel.className = 'visible';
+          while(panelLinkImagesHidden.length) {
+            panelLinkImagesHidden[0].className = 'ignore-click-off visible'
+          }
+        }
+        open = !open;
+      }
+
+      viewAcceleratorsButton.addEventListener('click', clickHandle)
+      viewAcceleratorsButtonMobile.addEventListener('click', clickHandle)
+
+      document.body.addEventListener('keydown', function(e) {
+        if(e.key == "Escape"){
+          open = false;
+          icon.className = 'arrow arrow-down';
+          iconMobile.className = 'arrow arrow-down';
+          panel.className = 'hidden';
+          while(panelLinkImagesVisible.length) {
+            panelLinkImagesVisible[0].className = 'ignore-click-off hidden'
+          }
+        }
+      });
+
+      document.addEventListener('click', function (event) {
+        if (open && !(event.target.matches('.ignore-click-off') || event.target.matches('.arrow') || event.target.matches('#panel') || event.target.matches('.panel-link'))) {
+          open = false;
+          icon.className = 'arrow arrow-down';
+          iconMobile.className = 'arrow arrow-down';
+          panel.className = 'hidden';
+          while (panelLinkImagesVisible.length) {
+            panelLinkImagesVisible[0].className = 'ignore-click-off hidden'
+          }
+          event.preventDefault();
+        }
+      });
+    </script>
+    <script src="//unpkg.com/docsify@4.9/lib/docsify.min.js"></script>
+    <script src="//unpkg.com/docsify@4.9/lib/plugins/search.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,285 @@
+{
+  "common": {
+    "name": "Polaris Bank",
+    "availableBalance": "Available:",
+    "signin": "Sign in"
+  },
+  "overview": {
+    "title": "Overview",
+    "recentTransactions": "Recent transactions",
+    "viewMore": "View more",
+    "budget": "Budget",
+    "spent": "Spent",
+    "remaining": "Remaining",
+    "balance": "Balance"
+  },
+  "transactions": {
+    "title": "Recent Transactions"
+  },
+  "accounts": {
+    "title": "Accounts",
+    "transfer": "Transfer",
+    "actions": "Actions",
+    "error": {
+      "message": "No accounts available. Please add an account."
+    }
+  },
+  "actions": {
+    "title": "Action Setup",
+    "noActions": "You don’t have any actions at the moment. Would you like to set one up?",
+    "mostPopular": "Most popular",
+    "scheduled": "Scheduled transfer",
+    "conditional": "Conditional transfer",
+    "create": {
+      "from": "From",
+      "to": "To",
+      "name": "Action name",
+      "note": "Add note",
+      "amount": "Amount",
+      "amountPlaceholder": "0,00",
+      "condition": "Condition",
+      "custom": "custom",
+      "create": "Create action",
+      "update": "Update action",
+      "first": "First",
+      "middle": "Middle",
+      "last": "Last",
+      "loading": "Please wait...",
+      "delete": "Delete action",
+      "successTitle": "Action saved",
+      "success": "Your action has been saved."
+    },
+    "condition": {
+      "conditional": "When balance drops below",
+      "scheduled": "Specific day of month"
+    }
+  },
+  "PIN": {
+    "title": "Enter your pin"
+  },
+  "searchHeader": {
+    "inputPlaceholder": "Search Polaris Bank"
+  },
+  "messages": {
+    "title": "Messages",
+    "placeholder": "Search messages",
+    "msgs": {
+      "0": {
+        "text": "Hi there, my name is Assistant and I can help you with most common queries, how may I help you today?"
+      },
+      "1": {
+        "text": "I want to apply for a new banking product such as Credit Cards, Savings Accounts, Travel Insurance, etc."
+      },
+      "2": {
+        "text": "Arrange a chat with us today"
+      },
+      "3": {
+        "text": "This has now been scheduled"
+      },
+      "4": {
+        "text": "Your transfer between accounts was successful"
+      },
+      "5": {
+        "text": "Your beneficiary received a transfer today"
+      },
+      "6": {
+        "text": "Download the latest SUPER app"
+      },
+      "7": {
+        "text": "This has now been scheduled"
+      },
+      "8": {
+        "text": "Your beneficiary received a transfer today"
+      }
+    }
+  },
+  "menuOverview": {
+    "title": "My Polaris app"
+  },
+  "menuItems": {
+    "sections": {
+      "account": "Account Inquiries"
+    },
+    "account": {
+      "item1": "Combined Statement",
+      "item2": "Account Balance",
+      "item3": "Statements",
+      "item4": "Direct Debits",
+      "item5": "NIB, IBAN and Swift",
+      "item6": "Low-Value Payments",
+      "item7": "Sign Documents",
+      "item8": "Transaction History",
+      "item9": "Scheduled Operations",
+      "item10": "Create New Saving",
+      "item11": "Saving goals"
+    }
+  },
+  "transfers": {
+    "step1": {
+      "item1": "To National and Eurozone",
+      "item2": "Between Accounts",
+      "item3": "To a Beneficiary",
+      "item4": "To a Mobile Number",
+      "item5": "Re-use a Transfer",
+      "item6": "Recent Transfers",
+      "title": "Transfer",
+      "title1": "Transfer within Eurozone",
+      "title2": "Transfer between accounts",
+      "title3": "Transfer to a beneficiary",
+      "title4": "Transfer to a mobile number",
+      "title5": "Reuse transactions",
+      "title6": "Recent transactions",
+      "utilities": "To my utilities",
+      "contacts": "To my contacts"
+    },
+    "step2": {
+      "title": "Transfer between accounts",
+      "subtitle": "Select a provider"
+    },
+    "step3": {
+      "title": "Transfer between accounts",
+      "to": "To",
+      "formSubmit": "Continue",
+      "notePlaceholder": "Add note or image",
+      "amount": "Amount",
+      "amountPlaceholder": "0,00"
+    },
+    "step4": {
+      "title": "Transfer between accounts",
+      "message": "Please wait..."
+    },
+    "step5": {
+      "title": "Transfer between accounts",
+      "subtitle": "Payment completed",
+      "message": "Your payment of {{amount}} {{currency}} to {{name}} has been submitted successfully."
+    }
+  },
+  "installPrompt": {
+    "title": "This app can be installed for offline use",
+    "install": "Install",
+    "cancel": "Dismiss",
+    "instructionsChrome": "If you are using Chrome, press the Menu button in the browser and Add to homescreen.",
+    "instructionsSafari": "If you are using Safari, press the Share button in the browser and Add to Home Screen.",
+    "instructionsOpera": "If you are using Opera, press the plus sign in top left and Add to home screen.",
+    "instructionsOther": "For any other browser please consult with documentation."
+  },
+  "prompt": {
+    "text": "Hey Aideen,  If you ever want to chat about Health insurance options we’re here to help "
+  },
+  "months": {
+    "0": "January",
+    "1": "February",
+    "2": "March",
+    "3": "April",
+    "4": "May",
+    "5": "June",
+    "6": "July",
+    "7": "August",
+    "8": "September",
+    "9": "October",
+    "10": "November",
+    "11": "December"
+  },
+  "openbanking": {
+    "invite": {
+      "title": "Open Banking",
+      "button": "Invite Open Banking Account",
+      "send": "Send invite",
+      "or": "or",
+      "share": "Share with QR",
+      "form": {
+        "name": "Name",
+        "contact": "Email address or phone",
+        "message": "Message"
+      },
+      "error": {
+        "title": "We're sorry",
+        "message": "It looks like there was an error, please try again."
+      }
+    },
+    "step1": {
+      "title": "Open Banking",
+      "subtitle": "Choose a provider to Connect or",
+      "notFound": {
+        "title": "Can’t find your account provider?",
+        "text": "Not all banks are on Open Banking yet. Expect to see more soon."
+      },
+      "invite": "Invite Open Banking Account"
+    },
+    "step2": {
+      "title": "Open Banking",
+      "subtitle": "Connect your Open Banking account",
+      "text1": "We will now connect you to Banco Santander to select accounts you want to view in Polaris app.",
+      "text2": "You will be be able to view your account summary and transaction details.",
+      "account": {
+        "title": "Account name",
+        "type": "Account type",
+        "number": "IBAN"
+      },
+      "transaction": {
+        "title": "Sample Transaction",
+        "date": "Transaction date"
+      },
+      "agreement1": "I have read and accept the Terms & Conditions of Open Banking.",
+      "agreement2": "Further conditions that need to be agreed.",
+      "formSubmit": "Connect with Banco Santander"
+    },
+    "step3": {
+      "title": "Open banking connection",
+      "field1Placeholder": "Field 1",
+      "field2Placeholder": "Field 2",
+      "formSubmit": "Connect"
+    }
+  },
+  "tabBar": {
+    "home": "Home",
+    "messages": "Messages",
+    "menu": "Menu"
+  },
+  "connect": {
+    "step1": {
+      "title": "Message from {{name}}",
+      "agreement1": "In order for us to offer this service, we need your approval to access the following information from the accounts you hold at your bank or building society.",
+      "agreement2": "Data you will be sharing",
+      "formSubmit": "Add Open Banking Account"
+    },
+    "step2": {
+      "title": "Open Banking",
+      "subtitle": "Choose a provider to Connect"
+    },
+    "step3": {
+      "title": "Open Banking",
+      "subtitle": "Connect your Open Banking account",
+      "message1": "We will now connect you to {{provider}} to select accounts you want to share with {{name}} in Polaris.",
+      "message2": "You will share your account summary and transaction details.",
+      "agreement1": "I have read and accept the Terms & Conditions of Open Banking.",
+      "agreement2": "Further conditions that need to be agreed.",
+      "agreement3": "We will access your information from your account until {{date, EEEE do MMMM yyyy}}.",
+      "formSubmit": "Connect with {{provider}}"
+    },
+    "step4": {
+      "title": "Open Banking",
+      "message": "Please wait..."
+    },
+    "step5": {
+      "title": "Open Banking",
+      "subtitle": "Connection completed",
+      "message": "Your account has been successfully connected."
+    },
+    "notify": {
+      "title": "Messages",
+      "message": "Hey, Just to let you know, {{connectionName}}, accepted your invite to Polaris and you can now view their account details, set up payments and a whole lot more.\n\nDo you want to set up an account action now {{username}}?",
+      "action": "Set up payment"
+    }
+  },
+  "notifications": {
+    "action": {
+      "title": "Action notification",
+      "body": "{{name}}'s account dropped below {{threshold}} {{currency}}. Confirm top up transfer."
+    }
+  },
+  "error": {
+    "title": "We're sorry",
+    "message": "It looks like there was an error, please try again."
+  }
+}

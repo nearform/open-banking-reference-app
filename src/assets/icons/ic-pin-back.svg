@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="80" height="80" viewBox="0 0 80 80">
+  <defs>
+    <polygon id="ic-pin-back-a" points="49.148 6 15 40.5 49.148 75 61.1 62.925 38.904 40.5 61.1 18.075"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd">
+    <mask id="ic-pin-back-b" fill="#fff">
+      <use xlink:href="#ic-pin-back-a"/>
+    </mask>
+    <use fill="#9BA1A1" stroke="#9BA1A1" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" xlink:href="#ic-pin-back-a"/>
+    <g fill="#9BA1A1" fill-rule="nonzero" mask="url(#ic-pin-back-b)">
+      <rect width="86" height="86"/>
+    </g>
+  </g>
+</svg>

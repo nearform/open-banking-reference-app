@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="381px" height="108px" viewBox="0 0 381 108" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
+    <title>Path 2</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polyline id="path-1" points="18 51.9747605 37.3938387 49 60.3272025 60.2028214 70.2378724 56.6377119 82.4944352 71.2825095 93.4148657 66.4526953 110.893377 61.8070055 117.895814 64.2696699 135.898359 67.9820789 143.089264 66.4526953 154.671632 67.9820789 168.46965 71.2825095 185.61566 79.378231 208.568944 79.378231 236.105222 93.3486728 246.86783 116.729024 261.137785 118.696854 278.519763 118.696854 283.665099 104.531931 289.576464 97.7851953 311.100405 110.745103 322.152971 106.445872 333.841732 114.924605 360.565244 103.276445"></polyline>
+        <filter x="-10.1%" y="-34.4%" width="120.3%" height="197.6%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="3.5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="10" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="3.5" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="10" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="8" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.768627451   0 0 0 0 0.862745098   0 0 0 0 0.239215686  0 0 0 0.4 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="balance/feb" transform="translate(1.000000, -40.000000)">
+            <g id="My-balance">
+                <g id="Path-2">
+                    <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                    <use stroke="#FA775E" stroke-width="4" xlink:href="#path-1"></use>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

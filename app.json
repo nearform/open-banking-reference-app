@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "privacy": "unlisted",
+    "name": "Polaris Bank",
+    "slug": "polaris",
+    "primaryColor": "#FA775E",
+    "description": "A banking application from NearForm",
+    "scheme": "polarisbank",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
+    "android": {
+      "package": "com.nearform.polarisbank",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/logos/polaris-512x512.png"
+      }
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nearform.polarisbank"
+    },
+    "version": "1.0.1",
+    "orientation": "portrait",
+    "icon": "./src/assets/logos/polaris-192x192.png",
+    "splash": {
+      "image": "./src/assets/images/splash.png",
+      "resizeMode": "cover"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "androidStatusBar": {
+      "barStyle": "light-content",
+      "backgroundColor": "#ffffff"
+    }
+  }
+}
