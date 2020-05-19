@@ -255,7 +255,7 @@ When you now visit the 'Current Account' section of the Polaris app, you will se
 [openbanking]: https://www.openbanking.org.uk/
 [watson]: https://www.ibm.com/cloud/watson-assistant/
 [ibmdashboard]: https://cloud.ibm.com/
-[insecure-origins]: ../img/insecure-origins.png
+[insecure-origins]: ./docs/img/insecure-origins.png
 [step-1]: ./docs/img/step-1.png ':size=400'
 [step-2]: ./docs/img/step-2.png ':size=400'
 [step-3]: ./docs/img/step-3.png ':size=400'
