@@ -54,6 +54,7 @@ async function main() {
     plugin: require('hapi-pino'),
     options: {
       level: 'debug',
+      prettyPrint: process.env.NODE_ENV !== 'production',
       redact: {
         paths: ['response.config.httpsAgent', 'response.request'],
         remove: true

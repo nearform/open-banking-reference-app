@@ -66,6 +66,7 @@
     "husky": "^3.1.0",
     "jest": "^25.3.0",
     "lint-staged": "^9.5.0",
+    "pino-pretty": "^4.0.0",
     "prettier": "^2.0.4",
     "ts-jest": "^25.3.1",
     "ts-node": "^8.8.2",
