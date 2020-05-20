@@ -13,7 +13,8 @@ export const createTransportInstance = async (
   const {
     server: {
       app: { openbanking }
-    }
+    },
+    logger
   } = req
   const { key, crt } = openbanking
 
@@ -23,6 +24,17 @@ export const createTransportInstance = async (
       cert: fs.readFileSync(`${process.cwd()}/${crt}`)
     })
   })
+
+  instance.interceptors.response.use(
+    response => {
+      logger.debug({ response }, `Receiveing axios response for ${response.config.url}`)
+      return response
+    },
+    async error => {
+      logger.warn({ error }, `Receiveing axios error for ${error.response?.config.url}`)
+      return error
+    }
+  )
 
   return instance
 }

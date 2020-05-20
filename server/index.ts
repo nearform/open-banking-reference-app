@@ -4,6 +4,12 @@ import Pack from './package.json'
 import config from './config'
 
 function handleServerError(request: hapi.Request, h: hapi.ResponseToolkit) {
+  if (request.response instanceof Error) {
+    request.logger.error(
+      { error: request.response },
+      `Error received while running request: ${request.response.message}`
+    )
+  }
   if ('isBoom' in request.response && request.response.output.statusCode === 500) {
     const error = internal('', {
       message: `[
@@ -46,7 +52,13 @@ async function main() {
 
   await server.register({
     plugin: require('hapi-pino'),
-    options: {}
+    options: {
+      level: 'debug',
+      redact: {
+        paths: ['response.config.httpsAgent', 'response.request'],
+        remove: true
+      }
+    }
   })
 
   await server.register({
