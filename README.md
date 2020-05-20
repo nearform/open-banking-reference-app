@@ -106,7 +106,7 @@ Restart the server and the client as per the instructions above.
 
 Once you have both applications running there's a final step to allow the service worker to run on an unsecured domain (the polarisbank.com alias). In Chrome open the page [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure), add an entry for `http://polarisbank.com:3000`, toggle the flag from disabled to enabled and restart Chrome.
 
-![insecure-origins]
+<img src="./docs/img/insecure-origins.png" width="600">
 
 If you are using Firefox, open [settings](about:options). Then set both `dom.webnotifications.allowinsecure` and `dom.serviceWorkers.testing.enabled` to `true`. This way you'll be allowed to see notification on an http domain.
 
@@ -204,47 +204,47 @@ Reference documentation is available [here][forgerock-doc].
 
 Tap on the 'Current Account' link on the overview page.
 
-![step-1]
+<img src="./docs/img/step-1.png" width="400">
 
 Tap on 'Add Open Banking Account'.
 
-![step-2]
+<img src="./docs/img/step-2.png" width="400">
 
 Tap on 'Invite Open Banking Account'.
 
-![step-3]
+<img src="./docs/img/step-3.png" width="400">
 
 This link will bring you to the invite page where you can fill in a name and invitation message. For simplicity's sake we'll share with a QR code which will generate a URL that the invitee can use. Once you've entered the required details tap on 'Share with QR code' and a code will be generated.
 
-![step-4]
+<img src="./docs/img/step-4.png" width="400">
 
 We now need to run through the invitee flow to connect the accounts. In the Chrome dev tools console paste the following code to access the connection ID, `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection.connections.pop().id`.
 
 You could also scan the QR code, and browse to the encoded URL.
 
-![step-5]
+<img src="./docs/img/step-5.png" width="400">
 
 Once you have this ID open a new tab and navigate to [`http://polarisbank.com:3000/connect/<id>`](http://polarisbank.com:3000/connect/<id>) where `<id>` is the ID from the previous step. This will bring you to the invitation page to allow invitees to connect their Open Banking account, tap 'Add Open Baking Account'.
 
-![step-6]
+<img src="./docs/img/step-6.png" width="400">
 
 Tap 'Cumberland Building Society Sandbox'.
 
-![step-7]
+<img src="./docs/img/step-7.png" width="400">
 
 You now need to confirm the connection by ticking the checkboxes and tapping the 'Connect with...' button.
 
-![step-8]
+<img src="./docs/img/step-8.png" width="400">
 
 Doing this will navigate you to the Cumberland Open Banking Sandbox website where you can login with one of their test accounts, details of which can be found at [https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf](https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf).
 
 Once logged in select an account to connect and tap 'Continue'.
 
-![step-9]
+<img src="./docs/img/step-9.png" width="400">
 
 Once this process is complete you'll be redirected back to our application and will see a success screen.
 
-![step-10]
+<img src="./docs/img/step-10.png" width="400">
 
 When you now visit the 'Current Account' section of the Polaris app, you will see the connected open banking app below the mock current account, with active 'Transfer' and 'Actions' buttons.
 
@@ -255,17 +255,6 @@ When you now visit the 'Current Account' section of the Polaris app, you will se
 [openbanking]: https://www.openbanking.org.uk/
 [watson]: https://www.ibm.com/cloud/watson-assistant/
 [ibmdashboard]: https://cloud.ibm.com/
-[insecure-origins]: ../img/insecure-origins.png
-[step-1]: ./docs/img/step-1.png ':size=400'
-[step-2]: ./docs/img/step-2.png ':size=400'
-[step-3]: ./docs/img/step-3.png ':size=400'
-[step-4]: ./docs/img/step-4.png ':size=400'
-[step-5]: ./docs/img/step-5.png
-[step-6]: ./docs/img/step-6.png ':size=400'
-[step-7]: ./docs/img/step-7.png ':size=400'
-[step-8]: ./docs/img/step-8.png ':size=400'
-[step-9]: ./docs/img/step-9.png ':size=400'
-[step-10]: ./docs/img/step-10.png ':size=400'
 [forgerock-doc]: https://docs.ob.forgerock.financial/
 [postman]: https://www.postman.com/downloads/
 [collection-github]: https://github.com/ForgeRock/obri-postman
