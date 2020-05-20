@@ -1,0 +1,2 @@
+# do not iclude terraform files in server image (see https://github.com/nearform/open-banking-reference-app-devops/blob/master/.github/workflows/aws.yml#L21-L23)
+./devops
