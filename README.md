@@ -112,7 +112,7 @@ Once you have both applications running, allow the service worker to run on an u
 
    <img src="./docs/img/insecure-origins.png" width="600">
 
-   If you are using Firefox, open [Settings](about:options). Set both `dom.webnotifications.allowinsecure` and `dom.serviceWorkers.testing.enabled` to `true`. This way you'll be allowed to see notifications on a HTTP domain.
+   If you are using Firefox, open [Settings](about:config). Set both `dom.webnotifications.allowinsecure` and `dom.serviceWorkers.testing.enabled` to `true`. This way you'll be allowed to see notifications on a HTTP domain.
 
 1. Open the application in Chrome [http://polarisbank.com:3000](http://polarisbank.com:3000). A message to enable notification is displayed. Click **Allow** to enable a web push notification flow further in the user journey.
 Don't forget to allow notifications when your browser asks for consent!
