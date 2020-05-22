@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
-import { compose } from 'store'
+import { useTranslation } from 'react-i18next'
 
 import { isDateToday } from 'utils/isDateToday'
 import { colors } from 'constants/colors'
 
-interface Props extends WithTranslation {
+interface Props {
   date: number
 }
 
@@ -18,9 +17,10 @@ const DaySeparator: React.FC<Props> = props => {
   const [state, setState] = useState<State>({
     date: 'archive'
   })
+  const { t } = useTranslation(['months'])
 
   useEffect(() => {
-    const { date, t } = props
+    const { date } = props
     const newDate = new Date(date)
     const dateIsToday = isDateToday(newDate)
     const month = t(`months:${newDate.getMonth()}`)
@@ -29,7 +29,7 @@ const DaySeparator: React.FC<Props> = props => {
     const dateToStr = date ? (dateIsToday ? 'Today' : `${day} ${month} ${year}`) : ''
 
     setState({ date: dateToStr })
-  }, [props])
+  }, [props, t])
 
   return (
     <View style={styles.row}>
@@ -40,7 +40,7 @@ const DaySeparator: React.FC<Props> = props => {
   )
 }
 
-export default compose(withTranslation(['months']))(DaySeparator)
+export default DaySeparator
 
 const styles = StyleSheet.create({
   row: {
