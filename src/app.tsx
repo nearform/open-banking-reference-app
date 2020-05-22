@@ -6,7 +6,7 @@ import { Redirect, Route, Router, withRouter, RouteComponentProps } from 'routin
 import { Notifications } from 'expo'
 import { EventSubscription } from 'fbemitter'
 import * as Permissions from 'expo-permissions'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import 'services/i18n'
 import useInterval from 'use-interval'
 
@@ -42,7 +42,7 @@ type Tokens = AppState['session']['tokens']
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 
-type Props = MapStateToProps & MapDispatchToProps & RouteComponentProps & WithTranslation
+type Props = MapStateToProps & MapDispatchToProps & RouteComponentProps
 
 export const App: React.FC<Props> = ({
   checkActions,
@@ -53,10 +53,9 @@ export const App: React.FC<Props> = ({
   actions,
   connections,
   setTransferAmount,
-  location: { pathname },
-  t
+  location: { pathname }
 }) => {
-  // export class App extends Component<Props> {
+  const { t } = useTranslation()
   const [loadProvidersCalled, setLoadProvidersCalled] = useState(false)
 
   // Initialize previous actions & connextions with value provided on mount
@@ -230,7 +229,6 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 const EnhancedApp = compose(
   withRouter,
-  withTranslation(),
   connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)
 )(App)
 
