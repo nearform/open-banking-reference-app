@@ -6,7 +6,9 @@ The home page uses mock data for demonstration purposes. Connection to a real op
 [![Polaris IBM video demonstration](http://i3.ytimg.com/vi/5Dj_zaKmbVM/maxresdefault.jpg)](https://www.youtube.com/watch?v=5Dj_zaKmbVM)
 
 This section contains the following:  
-- [Explore and Test Setup](#explore-and-test-setup): Describes the steps required to enable Polaris to run locally while connecting to a real open banking app.
+- [Explore and Test Setup](#explore-and-test-setup): Describes the steps required to enable Polaris to run locally while connecting to a real open banking app.  To connect Polaris to a real open bank account consists of the following steps, which are in detail described below:
+    1. [Configure the Environment](#Configure-the-envirmonment).
+    1. [Set up ForgeRock Bank Integration](#Set-up-ForgeRock-bank-integration).
 - [User Journeys](#user-journeys): Describes the user journeys you can use to test the app after you configure the [Explore and Test Setup](#explore-and-test-setup).
 
 ## Explore and Test Setup
@@ -75,9 +77,9 @@ This process is difficult and error prone. It consists of the steps below. Pleas
 
    1. Select **Import** on the menu bar for collection.
    1. Select the **Link** tab and enter the following URL in the field provided: https://raw.githubusercontent.com/ForgeRock/obri-postman/master/ForgeRock%20OBRI%20Sample%20(Generated).postman_collection.json. Select **Import**. (**Note:** Use the ForgeRock [github account][collection-github], if the link is invalid).
-   1. Download the environment file from https://raw.githubusercontent.com/ForgeRock/obri-postman/master/Environment/OBRI%20ob%20(Generated).postman_environment.json and save it locally.
+   1. Download the environment file from: https://raw.githubusercontent.com/ForgeRock/obri-postman/master/Environment/OBRI%20ob%20(Generated).postman_environment.json and save it locally.
    1. In the Postman app, click the cog icon. The Manage Environments modal is displayed. Select **Import** and select the environment file you downloaded in the previous step.
-   1. Close the "Manage Environments" modal.
+   1. Close the Manage Environments modal.
    1. Select the **ORBI ob (Generated)** environment in the environment dropdown box on the Postman app homepage.
 
 1. Configure a certificate in Postman:
@@ -136,25 +138,27 @@ The setup described above allows end-to-end testing of the following user journe
 ### Invite Journey
 This section describes a user journey where a user invites someone to connect their account. It consists of both the [inviter journey](#inviter-journey) and [invitee journey](#invitee-journey).
 #### Inviter Journey
-1. Tap the **Current Account** link on the overview page.
+ 1. Tap the **Current Account** link on the overview page.
 
-    ![step-1]
+     ![step-1]
 
-1. Tap **Add Open Banking Account**.
+ 1. Tap **Add Open Banking Account**.
 
- ![step-2]
+  ![step-2]
 
-1. Tap **Invite Open Banking Account**.
+ 1. Tap **Invite Open Banking Account**.
 
- ![step-3]
+  ![step-3]
 
- The invite page is displayed. Enter a name and invitation message in the fields provided. For simplicity, we share with a QR code which generates a URL that the invitee can use. When you've entered the required details tap **Share with QR code** to generate a code.
+ 1. The invite page is displayed. Enter a name and invitation message in the fields provided. For simplicity, we share with a QR code which generates a URL that the invitee can use. When you've entered the required details tap **Share with QR code** to generate a code.
 
- ![step-4]
+  ![step-4]
 #### Invitee Journey
 This section describes the invitee journey to connect the accounts after they receive a connect invitation.
 
-1. In the Chrome Developer Tools console, paste the following code to access the connection ID: `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection`. In the Connection state get the ID from the connection in the `connections` array as shown below.
+1. In the Chrome Developer Tools console, paste the following code to access the connection ID: `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection`. 
+ 
+ In the Connection state get the ID from the connection in the `connections` array as shown below.
 
     ![step-5]
 
@@ -166,11 +170,11 @@ This section describes the invitee journey to connect the accounts after they re
 
 1. Tap **Cumberland Building Society Sandbox**.
 
- ![step-7]
+  ![step-7]
 
 1. Confirm the connection by ticking the checkboxes and tap **Cumberland Building Society Sandbox**.
 
- ![step-8]
+  ![step-8]
 
 1. The Cumberland Open Banking Sandbox website is displayed. Log in using one of their test accounts. You can find details at: [https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf](https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf).
 
@@ -180,7 +184,7 @@ This section describes the invitee journey to connect the accounts after they re
 
 1. When this process is complete you are redirected back to the Polaris Bank application indicating the invitee account connected successfully.
 
-![step-10]
+ ![step-10]
 
 This concludes the invite user journey. After an invitee received and accepted the connect invitation, users can now perform **Actions** and **Transfers**.
 
@@ -234,6 +238,7 @@ This section describes how to create an action that is triggered under certain c
 
  ![step-21]
 
+<!-- Images -->
 [insecure-origins]: ../img/insecure-origins.png
 [service-worker]: ../img/service-worker.png
 [step-1]: ../img/step-1.png ':size=400'
@@ -257,3 +262,9 @@ This section describes how to create an action that is triggered under certain c
 [step-19]: ../img/step-19.png ':size=400'
 [step-20]: ../img/step-20.png ':size=400'
 [step-21]: ../img/step-21.png ':size=400'
+
+<!-- External Links -->
+[postman]: https://www.postman.com/downloads/
+[forgerock-doc]: https://docs.ob.forgerock.financial/
+[forgerock-directory]: https://directory.ob.forgerock.financial/dashboard
+[forgerock-bank]: https://bank.ob.forgerock.financial/register
