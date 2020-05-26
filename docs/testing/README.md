@@ -1,125 +1,244 @@
-# Testing IBM end-to-end user journeys locally
+# Explore and Test the App
 
-There are various steps required to test the full end to end IBM integrated user journeys locally. These steps are aimed to make development & local testing easier when making changes.
-
-The user journey is demonstrated in the below video (tap to open the video);
+There are various steps required to test user journeys locally. Follow these steps to make development and local testing easier.
+The home page uses mock data for demonstration purposes. Connection to a real open bank account is demonstrated in the video below (tap to open the video).
 
 [![Polaris IBM video demonstration](http://i3.ytimg.com/vi/5Dj_zaKmbVM/maxresdefault.jpg)](https://www.youtube.com/watch?v=5Dj_zaKmbVM)
 
-## Setup
+This section contains the following:  
+- [Explore and Test Setup](#explore-and-test-setup): Describes the steps required to enable Polaris to run locally while connecting to a real open banking app.  To connect Polaris to a real open bank account consists of the following steps, which are in detail described below:
+    1. [Configure the Environment](#Configure-the-envirmonment).
+    1. [Set up ForgeRock Bank Integration](#Set-up-ForgeRock-bank-integration).
+- [User Journeys](#user-journeys): Describes the user journeys you can use to test the app after you configure the [Explore and Test Setup](#explore-and-test-setup).
 
-Before running the application you'll need to ensure your environment variables are in order.
+## Explore and Test Setup
 
-For the frontend use the defaults in the sample file other than `REACT_APP_UI_BASE`, change that to `http://polarisbank.com:3000`. This is an alias to your local machine that is used in the backend config as a callback url. Add the following entry to your host file `127.0.0.1 polarisbank.com`.
+### 1. Configure the Environment
 
-For the backend environment variables you'll need to source the appropriate open banking and IBM credentials.
+Before running the application, configure your environment variables as described below.
 
-Next you need to run both the applications, the backend can be run with `cd server && npm run build && npm start`. For the frontend we need to build the application and serve the static built files to allow the service worker to be used. The application can be built with `npm run build:web` and then served statically with `npx serve web-build -l 3000 -s`. This build & serve workflow isn't necessarily required at all times but is required for a full end to end test, the alternative `npm run start:web` will be more useful for incremental changes and focused development & testing.
+1. For the frontend, in the `.env` file set `REACT_APP_UI_BASE` to `http://polarisbank.com:3000`. This is an alias to your local machine that is used in the backend configuration as a callback URL. Use the default values provided in the sample file for all other variables. 
+1. Add the following entry to your host file: `127.0.0.1 polarisbank.com`.
+1. For the backend environment variables you need to source the appropriate open banking and IBM credentials.
+1. Run both applications.   
+    - Run the backend with the command: `cd server && npm run build && npm start`. 
+    - For the frontend, build the application and serve the static built files to allow the service worker to be used. Build with the command: `npm run build:web`. Serve it statically with: `npx serve web-build -l 3000 -s`. This build and serve workflow isn't always necessary, but it is required for a complete end-to-end test.  You can use the alternative command: `npm run start:web`. This is more useful for incremental changes and focused development and testing.
 
-Once you have both applications running there's a final step to allow the service worker to run on an unsecured domain (the polarisbank.com alias). In Chrome open the page [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure), add an entry for `http://polarisbank.com:3000`, toggle the flag from disabled to enabled and restart Chrome.
+Once you have both applications running, allow the service worker to run on an unsecured domain (the polarisbank.com alias) as follows: 
+1. In Chrome open the page [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure). Add an entry for `http://polarisbank.com:3000`, toggle the flag from disabled to enabled and restart Chrome, as shown below.
 
-![insecure-origins]
+    ![insecure-origins]
 
-At this point you can open the application in Chrome [http://polarisbank.com:3000](http://polarisbank.com:3000). You should receive a message to enable notification, allowing this will enable a web push notification flow futher in the user journey. To double check the service worker is running as expected open Chrome dev tools, click on the Application tab and click on the Service Workers section, you should see the status with a green icon saying 'activated and is running'.
+    **Note:** If you are using Firefox, open [Settings](about:config). Set both `dom.webnotifications.allowinsecure` and `dom.serviceWorkers.testing.enabled` to true. This way, you'll be allowed to see notifications on a HTTP domain.
 
-![service-worker]
+1. Open the application in Chrome [http://polarisbank.com:3000](http://polarisbank.com:3000). A message to enable notification is displayed. Click **Allow** to enable a web push notification flow further in the user journey. 
 
-This setup will allow end to end testing of the IBM journeys below.
+1. To verify the service worker is running, open Chrome Developer Tools, click **Application** on the menu bar and select **Service Workers**. The status icon is green and shows as 'activated and is running', as in the diagram below:
 
-## Invite user journey
+    ![service-worker]
 
-Tap on the 'Current Account' link on the overview page.
+### 2. Set up ForgeRock Bank Integration
 
-![step-1]
+This process is difficult and error prone. It consists of the steps below. Please follow each step carefully.
+- [Create a ForgeRock Directory Account](#create-a-ForgeRock-Directory-Account).
+- [Create a ForgeRock Bank Account](#create-a-ForgeRock-Bank-Account).
+- [Register your Third Party Provider (TPP) with Postman](#Register-your-third-party-provider-(TPP)-with-postman).
+- [Add your ForgeRock account to the Polaris Bank App](#Add-your-ForgeRock-account-to-the-polaris-bank-app).
 
-Tap on 'Add Open Banking Account'.
+#### Create a ForgeRock Directory Account
 
-![step-2]
+1. Browse to [ForgeRock Directory][forgerock-directory] and create an account.
+   **Caution:** Don't forget your _username_, as authentication doesn't work with your _email_.
 
-Tap on 'Invite Open Banking Account'.
+1. On the dashboard, click **Create a new software statement**.
 
-![step-3]
+1. Select the **Transport/Signing/Encryption keys** tab and scroll to **Keys** section.
 
-This link will bring you to the invite page where you can fill in a name and invitiation message. For simplicity's sake we'll share with a QR code which will generate a URL that the invitee can use. Once you've entered the required details tap on 'Share with QR code' and a code will be generated.
+1. Click the download (cloud) button of your _Transport_ key:
 
-![step-4]
+   1. Save the Public certificate (.pem) as your `server/crt.crt` file.
+   1. Save the Private key (.key) as your `server/key.key` file.
 
-We now need to run through the invitee flow to connect the accounts. In the Chrome dev tools console paste the following code to access the connection ID, `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection`. From there you can dig into the connection state and grab the ID from the connection in the `connections` array.
+1. **Log out**. If you forget to log out, you'll have trouble completing the next step.
 
-![step-5]
+#### Create a ForgeRock Bank Account
 
-Once you have this ID open a new tab and navigate to [`http://polarisbank.com:3000/connect/<id>`](http://polarisbank.com:3000/connect/<id>) where `<id>` is the ID from the previous step. This will bring you to the invitation page to allow invitees to connect their Open Banking account, tap 'Add Open Baking Account'.
+1. Browse to [ForgeRock Bank][forgerock-bank] and create an account.
+   **Caution:** Don't forget your _username_, as authentication doesn't work with your _email_.
+   We recommend using a different username from the Directory account above, to avoid confusion.
 
-![step-6]
+1. **Log out**.
 
-Tap 'Cumberland Building Society Sandbox'.
+#### Register your Third Party Provider (TPP) with Postman
 
-![step-7]
+1. Download [Postman][postman]. Don't use the web extension; install the desktop app on your laptop.
 
-You now need to confirm the connection by ticking the checkboxes and tapping the 'Connect with...' button.
+1. Open the Postman app and import their collection and environment as follows:
 
-![step-8]
+   1. Select **Import** on the menu bar for collection.
+   1. Select the **Link** tab and enter the following URL in the field provided: https://raw.githubusercontent.com/ForgeRock/obri-postman/master/ForgeRock%20OBRI%20Sample%20(Generated).postman_collection.json. Select **Import**. (**Note:** Use the ForgeRock [github account][collection-github], if the link is invalid).
+   1. Download the environment file from: https://raw.githubusercontent.com/ForgeRock/obri-postman/master/Environment/OBRI%20ob%20(Generated).postman_environment.json and save it locally.
+   1. In the Postman app, click the cog icon. The Manage Environments modal is displayed. Select **Import** and select the environment file you downloaded in the previous step.
+   1. Close the Manage Environments modal.
+   1. Select the **ORBI ob (Generated)** environment in the environment dropdown box on the Postman app homepage.
 
-Doing this will navigate you to the Cumberland Open Banking Sandbox website where you can login with one of their test accounts, details of which can be found at [https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf](https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf).
+1. Configure a certificate in Postman:
 
-Once logged in select an account to connect and tap 'Continue'.
+   1. In the **Settings** menu (spanner icon on the menu bar), select the **Certificates** tab.
+   1. Click **Add Certificate**.
+   1. Enter `*.ob.forgerock.financial` in the Host field.
+   1. Select your file `server/crt.crt` as the CRT file.
+   1. Select your file `server/key.key` as the KEY file.
+   1. No passphrase nor PFX file is required. Click **Add** to save the certificate.
 
-![step-9]
+1. Using the Collections tab on the left pane, open the `ForgeRock ORBI Sample (Generated)` folder.
 
-Once this process is complete you'll be redirected back to our application and will see a success screen.
+1. Set up your Postman variables by running queries from the following subfolders:
 
-![step-10]
+   1. `Setup your environment/Test MATLS`: run all queries in order. They should all succeed.
+   1. `Setup your environment/Discovery`: run all queries in order. They should all succeed and set the global variables.
 
-That concludes the invite user journey, once a user has been invited and has accepted actions and transfers can be done.
+1. Onboard your TPP:
 
-## Action setup journey
+   1. Edit the request body of the `Dynamic Registration/Onboarding your TPP/Generate registration JWT - FR Tool API` query. **Carefully set up your redirect_uris**.
+   1. Run all queries in the `Dynamic Registration/Onboarding your TPP` folder in order. They should all succeed.
 
-Return to the original tab you opened and you will see a screen letting you know your invitation has been accepted, from here you can set up a payment by tapping on the 'Set up payment' button.
+1. Your TPP is ready to use!
 
-![step-11]
+#### Add your ForgeRock account to the Polaris Bank App
 
-You'll then be brought to an action setup screen, tap 'Conditional transfer' here.
+1. Open http://polarisbank.com:3000/overview.
 
-![step-12]
+1. Tap **Current Account**.
 
-Create an action with a name, amount and balance condition of £1,000,000 (this is required as we don't have control of the invitee's account balance so we want to ensure the condition is triggered straight away) then tap 'Create action'.
+1. Tap **Add Open Banking Account**.
 
-![step-13]
+1. Select **ForgeRock Bank**.
 
-Once created you'll see a success screen.
+1. When redirected to `https://bank.ob.forgerock.financial/login`, log in with the same _username_ and _password_ you used on [ForgeRock Bank][forgerock-bank].
 
-![step-14]
+#### Additional Notes
 
-At this point you should also receive a web push notification alerting you that the action condition has been met, tap on the notification and you'll be brought to the balance transfer screen. On this screen again choose the 'Cumberland Building Society Sandbox'.
+_Caution:_ The imported account is hardcoded as a Santander account with no transactions.
 
-![step-15]
+The ForgeRock certificate and private key shipped for development were created with the directory account `damien`/`Password`.
+The corresponding bank account is `damien-customer`/`Password`.
 
-This will bring you to a pre-filled transfer screen, tap 'Continue' to be taken to the Cumberland Sandbox once again.
+Refer to the [ForgeRock Documentation][forgerock-doc] for more details.
 
-![step-16]
+You are now set up!
 
-You can once again log in to the Cumberland Sandbox with the same account details. Once logged in you'll be brought to a screen to action the payment. Choose an account, ensuring it isn't the same account used as the one previously or the transation will fail, and tap 'Continue'.
+## User Journeys
 
-![step-17]
+The setup described above allows end-to-end testing of the following user journeys, which are described below:
+- [Invite Journey](#Invite-journey)
+- [Action Setup Journey ](#action-setup-journey)
+- [Action Edit and Remove Journey](#action-edit-and-remove-journey)
 
-Once the transaction has been processed you'll be redirected back to the application and a success screen will be displayed.
+### Invite Journey
+This section describes a user journey where a user invites someone to connect their account. It consists of both the [inviter journey](#inviter-journey) and [invitee journey](#invitee-journey).
+#### Inviter Journey
+ 1. Tap the **Current Account** link on the overview page.
 
-![step-18]
+     ![step-1]
 
-## Action edits & removals
+ 1. Tap **Add Open Banking Account**.
 
-You can edit and remove actions by tapping 'Current Account' on the overview page then tapping the 'Actions' button on the Jane account.
+  ![step-2]
 
-![step-19]
+ 1. Tap **Invite Open Banking Account**.
 
-Here you'll see a list of created actions, tapping one of them allows you to view the action details.
+  ![step-3]
 
-![step-20]
+ 1. The invite page is displayed. Enter a name and invitation message in the fields provided. For simplicity, we share with a QR code which generates a URL that the invitee can use. When you've entered the required details tap **Share with QR code** to generate a code.
 
-From the action details screen you can edit or remove an action.
+  ![step-4]
+#### Invitee Journey
+This section describes the invitee journey to connect the accounts after they receive a connect invitation.
 
-![step-21]
+1. In the Chrome Developer Tools console, paste the following code to access the connection ID: `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection`. 
+ 
+ In the Connection state get the ID from the connection in the `connections` array as shown below.
 
+    ![step-5]
+
+1. Open a new tab and navigate to [`http://polarisbank.com:3000/connect/<id>`](http://polarisbank.com:3000/connect/<id>) where `<id>` is the ID from the previous step. This displays the invitation page to allow invitees to connect their Open Banking account. 
+
+1. Tap **Add Open Banking Account**.
+
+    ![step-6]
+
+1. Tap **Cumberland Building Society Sandbox**.
+
+  ![step-7]
+
+1. Confirm the connection by ticking the checkboxes and tap **Cumberland Building Society Sandbox**.
+
+  ![step-8]
+
+1. The Cumberland Open Banking Sandbox website is displayed. Log in using one of their test accounts. You can find details at: [https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf](https://www.cumberland.co.uk/developers/neon/download/file/PDFs/sandbox-instructions.pdf).
+
+1. When logged in, select an account to connect and tap **Continue**.
+
+ ![step-9]
+
+1. When this process is complete you are redirected back to the Polaris Bank application indicating the invitee account connected successfully.
+
+ ![step-10]
+
+This concludes the invite user journey. After an invitee received and accepted the connect invitation, users can now perform **Actions** and **Transfers**.
+
+### Action Setup Journey
+
+This section describes how to create an action that is triggered under certain conditions. In this example, a payment transfer from the inviters account is triggered if the invitee's balance is below £1,000,000.
+
+1. Return to the original tab you opened. A screen indicating that your invitation was accepted is displayed. Tap **Set up payment**.
+
+    ![step-11]
+
+1. The action setup screen is displayed. Tap **Conditional transfer**.
+
+ ![step-12]
+
+1. Create an action with a name, amount and balance condition of £1,000,000 (this is required as we don't have control of the invitee's account balance so we want to ensure the condition is triggered immediately). Tap **Create action**.
+
+    ![step-13]
+
+1. A screen displays that the action saved successfully.
+
+ ![step-14]
+
+1. You now receive a web push notification alerting you that the action condition has been met. Tap the notification. The transfer screen is displayed. Select **Cumberland Building Society Sandbox** from the provider list.
+
+ ![step-15]
+
+1. A prefilled transfer screen is displayed. Tap **Continue** . The Cumberland Sandbox is displayed again.
+
+ ![step-16]
+
+1. Log in to the Cumberland Sandbox with the same account details. A screen to action the payment is displayed. Choose an account. Ensure it's a different account to the one used previously or the transaction will fail. Tap **Continue**.
+
+ ![step-17]
+
+1. When the transaction has been processed, you are redirected back to the Polaris Bank application and a payment success screen is displayed.
+
+ ![step-18]
+
+### Action Edit and Remove Journey
+
+1. You can edit and remove actions by tapping **Current Account** on the overview page. Then tap **Actions** on the account called 'Jane'.
+
+ ![step-19]
+
+1. A list of created actions is displayed. Tap a listed action to view the action details.
+
+ ![step-20]
+
+1. You can edit or remove an action. Click either **Update action** or **Delete action** as appropriate.
+
+ ![step-21]
+
+<!-- Images -->
 [insecure-origins]: ../img/insecure-origins.png
 [service-worker]: ../img/service-worker.png
 [step-1]: ../img/step-1.png ':size=400'
@@ -143,3 +262,9 @@ From the action details screen you can edit or remove an action.
 [step-19]: ../img/step-19.png ':size=400'
 [step-20]: ../img/step-20.png ':size=400'
 [step-21]: ../img/step-21.png ':size=400'
+
+<!-- External Links -->
+[postman]: https://www.postman.com/downloads/
+[forgerock-doc]: https://docs.ob.forgerock.financial/
+[forgerock-directory]: https://directory.ob.forgerock.financial/dashboard
+[forgerock-bank]: https://bank.ob.forgerock.financial/register

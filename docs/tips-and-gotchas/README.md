@@ -14,7 +14,7 @@ As with any application, Polaris has its drawbacks. This is the result of the un
 
 ### Expo Web Port
 
-Expo Web runs on a non-configurable port which isn't the same as the normal Create-React-App(CRA). We have included `patch-package` and `expo-cli` in the package file to temporarily force the port to 3000. You can remove this when it is possible to either (a) use the default `expo-web` port 19006 _or_ (b) manually configure which port we want to run on.
+Expo Web runs on a non-configurable port which isn't the same as the normal Create-React-App(CRA). We have included `patch-package` and `expo-cli` in the package file to temporarily force the port to 3000. You can remove this when it is possible to either (a) use the default `expo-web` port 19006 _or_ (b) manually configure the port.
 
 ### Graphics
 

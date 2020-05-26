@@ -8,7 +8,7 @@ You need the latest stable version of [Node]. If you are running macOS, you also
 
 ## Clone the Source Repository
 
-Fork [Polaris] on GitHub. It is easier to maintain your own fork as we have designed Polaris to diverge. It is unlikely you will need to pull from the source repository again.
+Fork [Polaris] on GitHub. It is easier to maintain your own fork as we have designed Polaris to diverge.
 
 After you have your fork, clone a copy of it locally using the command:
 
@@ -50,30 +50,26 @@ To enable Polaris to fetch bank account details from your bank, you need to regi
 
 We recommend [ForgeRock]. After you register for a free trial, a certificate and a client ID is displayed. Enter these details into the `server/.env` file. Remember to also copy the certificate files into the `server` directory.
 
-## Register for the Watson Assistant Chatbot
+## Configure the IBM Watson Assistant Chatbot (Optional)
 
-Polaris also includes a chatbot called [Watson Assistant][watson] to show how a conversation with your bank might look.
+Polaris also includes a chatbot called [Watson Assistant][watson] to show how a conversation with your bank might look. This step is optional - if you skip this step, the assistant does not respond, but Polaris still works.
 
-This step is optional - if you skip this step, the assistant does not respond, but Polaris still works.
+Configure Polaris with the IBM Watson Assistant as follows:
+1. Sign up for a free account - you are on the assistant page. 
+1. Click the user icon and select **IBM Cloud Dashboard** to go to the [IBM cloud dashboard][ibmdashboard].
+1. Click the **Services** link in the 'Resource summary' section.
+1. Click the **Assistant** link under Services in the 'Resource list'. The assistant URL and key are displayed.
+1. Edit the `/server/.env` file to enter the displayed API key and URL value for the variables WATSON_ASSISTANT_URL and WATSON_API_KEY.
+1. Click **Launch Assistant**  to return to the assistant page you started on.
+1. Click the three dot menu icon to the right of 'My first assistant'. Select **Settings** on the menu. 
+1. On the Assistant settings page, select **API details** on the left hand menu.
+1. Edit the `/server/.env` file to enter the displayed Assistant ID value for the variable WATSON_ASSISTANT_ID.
 
-After you sign up for a free account you will be on the assistant page. However, we need the base watson url, so go to the [IBM cloud dashboard][ibmdashboard] then click on the services link in the 'Resource summary' section and then click on the 'Assistant' link under the Services section.
+Polaris is now configured with IBM Watson Assistant. However, the assistant's only response is 'I didn't understand. You can try rephrasing'. To build responses, edit the Skill section on the assistant overview page.
 
-You should be presented with the url and key, copy them into the `/server/.env` file (WATSON_ASSISTANT_URL & WATSON_API_KEY)
+## Run Polaris
 
-Now, click on 'Launch Assistant' and you should be returned to the assistant page you started on.
-
-Next click the three dot menu icon to the far left of the 'My first assistant' section. click 'Settings' on the menu. On the Assistant settings page, select 'API details' on the left hand menu.
-
-Copy the Assistant ID into WATSON_ASSISTANT_ID in the `/server/.env`
-
-Watson is now setup, however it will only respond with 'I didn't understand. You can try rephrasing' In order
-to build responses you will need to edit the Skill section on the assistant overview page.
-
-## Run the Stack
-
-You are now all set to run Polaris.
-
-To start the server, run:
+You are now all set to run Polaris. To start the server, run:
 
 ```sh
 cd server && npm run build && npm start
@@ -91,11 +87,11 @@ Congratulations! You are now running Polaris locally.
 
 ### Run Polaris on Native Devices
 
-To run Polaris on native devices, scan the QR code displayed in the left panel of the [Expo] console.
+To run Polaris on native devices, install the Expo app (Expo Client on the App Store or Expo on the Play Store). Use the app to scan the QR code displayed in the left panel of the [Expo] console.
 
 ### Run Polaris in Simulators
 
-To run Polaris in simulators, install [XCode] and [Android Studio][androidstudio]. Then press the corresponding button in the left panel of the [Expo] console.
+To run Polaris in simulators, install [XCode] and [Android Studio][androidstudio]. Press the corresponding button in the left panel of the [Expo] console.
 
 ## Next Steps
 

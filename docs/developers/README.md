@@ -5,7 +5,7 @@ This section describes Polaris features for developers.
 
 ## The Technology Stack
 
-We used the following libraries and tools to create the Polaris technology stack:
+We use the following libraries and tools to create the Polaris technology stack:
 - [React](https://reactjs.org/)
 - [React Native](https://facebook.github.io/react-native/)
 - [react-native-web](https://github.com/necolas/react-native-web)
@@ -60,9 +60,9 @@ npm run start:dev
 
 ## Linting and Formatting
 
-To ensure the best code quality and style, we use the powerful [ESLint] to lint your code. With pluggable configurations like [standard] and React you are all set to start writing your React code. Also, with `@typescript-eslint/parser` it's possible to lint TypeScript code.
+To ensure the best code quality and style, we use the powerful [ESLint] to lint your code. With pluggable configurations like [standard] and React, you are all set to start writing your React code. Also, with `@typescript-eslint/parser` it's possible to lint TypeScript code.
 
-On top of all this there is [Prettier], the defacto industry standard, to handle code formatting.
+We also use [Prettier], the defacto industry standard, to handle code formatting.
 
 To ensure you don't commit unlinted and unformatted code to the repository, we set up the `lint-staged` package to automatically run linting and formatting on committed files.
 
