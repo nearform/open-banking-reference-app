@@ -21,7 +21,7 @@ Fork Polaris on GitHub. It is easier to maintain your own fork as we have design
 
 After you have your fork, clone a copy of it locally using the command:
 
-    git clone https://github.com/<your-fork>/polaris.git
+    git clone https://github.com/<your-fork>/open-banking-reference-app.git
 
 ### 2. Install Dependencies
 
