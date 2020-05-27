@@ -16,7 +16,7 @@ interface Props {
 }
 
 const Step1: React.FC<Props> = ({ connection, onContinue }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <ScrollView>

@@ -9,7 +9,7 @@ import { colors } from 'constants/colors'
 import { useFadeIn } from 'src/utils/hooks'
 
 const Step5: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
   return (
     <Animated.View style={{ flex: 1, opacity, width: '100%' }}>

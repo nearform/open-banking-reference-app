@@ -50,7 +50,7 @@ const Overview: React.FC<Props> = props => {
     loadAccounts,
     providers: { providers }
   } = props
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const prevTokens = usePrevious(tokens)
   const [loadedAccounts, setLoadedAccounts] = useState<boolean>(false)
   const [state, setState] = useState<State>(initialState)

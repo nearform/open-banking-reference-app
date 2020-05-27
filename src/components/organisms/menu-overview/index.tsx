@@ -15,7 +15,7 @@ interface Props {
 }
 
 const MenuOverview: React.FC<Props> = ({ animation, toggleEdit, selectedItems, editing }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const list = useRef<FlatList<string>>(null)
   const data = [...selectedItems, 'Edit']
 

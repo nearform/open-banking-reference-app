@@ -78,7 +78,7 @@ const ListWithTitle: React.FC<ListWithTitleProps> = ({ title, list }) => (
 )
 
 export const Transfer: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (

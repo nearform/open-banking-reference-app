@@ -9,7 +9,7 @@ import MenuList from 'components/organisms/menu'
 import { useFadeIn } from 'utils/hooks'
 
 export const Menu: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn({ delay: 500 } as Animated.TimingAnimationConfig)
   const animation = useRef(new Animated.Value(0.01)).current
 

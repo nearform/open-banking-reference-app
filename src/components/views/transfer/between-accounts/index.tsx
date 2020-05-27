@@ -32,7 +32,7 @@ export const Transfer: React.FC<Props> = ({
   setAmount,
   setInstitution
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [inProgress, setInProgress] = useState(false)
 
   const consent = useConsent()

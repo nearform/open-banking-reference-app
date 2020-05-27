@@ -31,7 +31,7 @@ export const Connect: React.FC<Props> = ({
     params: { id }
   }
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [step, setStep] = useState(1)
   const [institution, setInstitution] = useState<Institution>()
 

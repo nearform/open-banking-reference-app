@@ -16,7 +16,7 @@ interface Props extends RouteComponentProps {
 }
 
 const QuickActions: React.FC<Props> = ({ history, onQuickAction, actionsCount = 0, connection }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const navigate = (location: string) => {
     onQuickAction && onQuickAction()
     history.push(location)

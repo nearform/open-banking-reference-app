@@ -8,7 +8,7 @@ import { colors } from 'constants/colors'
 interface Props {}
 
 const SubheaderSearch: React.FC<Props> = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <View style={styles.container}>

@@ -1,5 +1,5 @@
 import React, { useState, useRef, MutableRefObject } from 'react'
-import { connect, AppState, Dispatch } from 'store'
+import { compose, connect, AppState, Dispatch } from 'store'
 import { View, StyleSheet, FlatList, TextInput } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { differenceInDays } from 'date-fns'
@@ -19,7 +19,7 @@ type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 interface Props extends MapStateToProps, MapDispatchToProps {}
 
 export const Messages: React.FC<Props> = ({ messages, sendMessage }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const [text, setText] = useState<string>()
   const inputRef = useRef() as MutableRefObject<TextInput>
   const flatListRef = useRef() as MutableRefObject<FlatList>
@@ -92,7 +92,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   sendMessage: (text: string) => dispatch(sendMessageAction(text))
 })
 
-export default connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)(Messages)
+export default compose(connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps))(Messages)
 
 const styles = StyleSheet.create({
   view: {

@@ -20,7 +20,7 @@ export const Notify: React.FC<Props> = ({
     params: { id }
   }
 }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   const connection = useMemo(() => connections.find(connection => connection.id === id), [connections, id])

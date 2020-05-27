@@ -49,7 +49,7 @@ const SectionHeading = (props: SectionHeadingProps) => {
 interface TransactionsProps extends RouteComponentProps, MapStateToProps {}
 
 export const Transactions = ({ account }: TransactionsProps) => {
-  const {t} = useTranslation(['common', 'transactions', 'overview', 'months'])
+  const { t } = useTranslation(['common', 'transactions', 'overview', 'months'])
 
   const transactions = account ? account.transactions : []
 
@@ -95,9 +95,7 @@ const mapStateToProps = (state: AppState) => ({
   account: state.accounts.accounts.find(account => account.id === state.accounts.active)
 })
 
-export default compose(
-  connect<MapStateToProps>(mapStateToProps)
-)(Transactions)
+export default compose(connect<MapStateToProps>(mapStateToProps))(Transactions)
 
 const styles = StyleSheet.create({
   view: {

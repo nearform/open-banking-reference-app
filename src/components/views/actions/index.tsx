@@ -26,7 +26,7 @@ export const Actions: React.FC<ActionsProps> = ({
     params: { connection }
   }
 }) => {
-  const {t} = useTranslation(['common', 'transactions', 'overview', 'months'])
+  const { t } = useTranslation(['common', 'transactions', 'overview', 'months'])
   const transferTypes = [
     {
       type: 'scheduled',
@@ -74,10 +74,7 @@ const mapStateToProps = (state: AppState, props: RouteProps) => ({
   })
 })
 
-export default compose(
-  withRouter,
-  connect<MapStateToProps>(mapStateToProps)
-)(Actions)
+export default compose(withRouter, connect<MapStateToProps>(mapStateToProps))(Actions)
 
 const styles = StyleSheet.create({
   view: {

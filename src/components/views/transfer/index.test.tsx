@@ -1,14 +1,10 @@
 import React from 'react'
 
 import { Transfer } from './'
-import { render, i18nStubProps, fireEvent } from 'test-utils'
-
-const stubProps = {
-  ...i18nStubProps
-}
+import { render, fireEvent } from 'test-utils'
 
 test('Transfer view', () => {
-  const { getByText, history } = render(<Transfer {...stubProps} />)
+  const { getByText, history } = render(<Transfer />)
 
   const linkText = getByText('transfers:step1:item3')
   // ensure the transfer view is displayed

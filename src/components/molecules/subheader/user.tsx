@@ -12,7 +12,7 @@ type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 interface Props extends MapStateToProps, MapDispatchToProps {}
 
 const SubheaderUser: React.FC<Props> = ({ accounts, activeAccount, toggleSidebar }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const account = accounts.find(a => a.id === activeAccount)
 
   return (

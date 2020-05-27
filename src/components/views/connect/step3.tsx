@@ -19,7 +19,7 @@ interface Props {
 }
 
 const Step3: React.FC<Props> = ({ connection, institution, onContinue }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [furtherTermsAccepted, setFurtherTermsAccepted] = useState(false)

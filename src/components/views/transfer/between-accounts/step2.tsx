@@ -30,7 +30,7 @@ interface Props {
 }
 
 const Step2: React.FC<Props> = ({ amount, connection, onChangeAmount, onContinue }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   const [note, setNote] = useState('')

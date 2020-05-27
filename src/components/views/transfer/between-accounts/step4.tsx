@@ -15,7 +15,7 @@ interface Props {
 }
 
 const Step4: React.FC<Props> = ({ amount, connection }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (

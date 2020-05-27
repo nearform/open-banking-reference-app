@@ -9,7 +9,7 @@ import { colors } from 'constants/colors'
 import { useFadeIn } from 'utils/hooks'
 
 const ActionComplete: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (

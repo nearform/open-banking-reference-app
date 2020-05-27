@@ -14,7 +14,7 @@ interface Props {
 }
 
 const Step1: React.FC<Props> = ({ institutions, onContinue }) => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (

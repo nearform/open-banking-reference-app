@@ -6,7 +6,7 @@ import Subheader from 'components/organisms/subheader'
 import { useFadeIn } from 'utils/hooks'
 
 const Step3: React.FC = () => {
-  const {t} = useTranslation()
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (
