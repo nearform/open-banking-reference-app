@@ -29,6 +29,7 @@ yarn-error.log*
 
 # editors
 .vscode
+.idea
 
 terraform/.terraform/
 terrarform/.zip

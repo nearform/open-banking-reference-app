@@ -13,7 +13,7 @@ Fork [Polaris] on GitHub. It is easier to maintain your own fork as we have desi
 After you have your fork, clone a copy of it locally using the command:
 
 ```sh
-git clone https://github.com/<your-fork>/polaris.git
+git clone https://github.com/<your-fork>/open-banking-reference-app.git
 ```
 
 ## Install Dependencies
@@ -102,7 +102,7 @@ To run Polaris in simulators, install [XCode] and [Android Studio][androidstudio
 
 [expo]: https://expo.io/
 [watchman]: https://facebook.github.io/watchman/docs/install
-[polaris]: https://github.com/nearform/polaris
+[polaris]: https://github.com/nearform/open-banking-reference-app
 [node]: https://nodejs.org/en/
 [forgerock]: https://www.forgerock.com/
 [openbanking]: https://www.openbanking.org.uk/
