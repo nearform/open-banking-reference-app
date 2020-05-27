@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo } from 'react'
 import { compose, connect, AppState, Dispatch } from 'store'
 import { Animated, View, Text, StyleSheet, ScrollView } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { withRouter, RouteComponentProps } from 'routing'
 import { Spring } from 'react-spring/renderprops'
 import { loadAccounts as loadAccountsAction } from 'store/actions/accounts'
@@ -21,7 +21,7 @@ import { usePrevious } from 'utils/hooks'
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 
-interface Props extends MapStateToProps, MapDispatchToProps, WithTranslation, RouteComponentProps {}
+interface Props extends MapStateToProps, MapDispatchToProps, RouteComponentProps {}
 type State = typeof initialState
 
 const initialState = {
@@ -43,7 +43,6 @@ const Overview: React.FC<Props> = props => {
   const {
     accounts,
     activeAccount,
-    t,
     session: { tokens },
     history: {
       location: { pathname }
@@ -51,6 +50,7 @@ const Overview: React.FC<Props> = props => {
     loadAccounts,
     providers: { providers }
   } = props
+  const {t} = useTranslation()
   const prevTokens = usePrevious(tokens)
   const [loadedAccounts, setLoadedAccounts] = useState<boolean>(false)
   const [state, setState] = useState<State>(initialState)
@@ -218,8 +218,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 export default compose(
   connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps),
-  withRouter,
-  withTranslation(undefined)
+  withRouter
 )(Overview)
 
 const styles = StyleSheet.create({

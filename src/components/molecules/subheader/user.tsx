@@ -1,7 +1,7 @@
 import React from 'react'
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native'
-import { compose, connect, AppState, Dispatch } from 'store'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { connect, AppState, Dispatch } from 'store'
+import { useTranslation } from 'react-i18next'
 import { colors } from 'constants/colors'
 import { toggleSidebar as toggleSidebarAction, UIAction } from 'store/actions/ui'
 import { getSymbol } from 'services/currencies'
@@ -9,9 +9,10 @@ import { getSymbol } from 'services/currencies'
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 
-interface Props extends WithTranslation, MapStateToProps, MapDispatchToProps {}
+interface Props extends MapStateToProps, MapDispatchToProps {}
 
-const SubheaderUser: React.FC<Props> = ({ accounts, activeAccount, t, toggleSidebar }) => {
+const SubheaderUser: React.FC<Props> = ({ accounts, activeAccount, toggleSidebar }) => {
+  const {t} = useTranslation()
   const account = accounts.find(a => a.id === activeAccount)
 
   return (
@@ -69,7 +70,4 @@ const mapDispatchToProps = (dispatch: Dispatch<UIAction>) => ({
   toggleSidebar: () => dispatch(toggleSidebarAction())
 })
 
-export default compose(
-  withTranslation(),
-  connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)
-)(SubheaderUser)
+export default connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)(SubheaderUser)

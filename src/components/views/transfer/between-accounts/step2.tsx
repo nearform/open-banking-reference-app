@@ -11,7 +11,7 @@ import {
   TextInput
 } from 'react-native'
 
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { RoundButton } from 'components/atoms/button'
 import Account from 'components/organisms/account'
@@ -22,14 +22,15 @@ import { Connection as ConnectionType } from 'src/types'
 import { screenNormalizer } from 'utils'
 import { useFadeIn } from 'utils/hooks'
 
-interface Props extends WithTranslation {
+interface Props {
   onContinue(): void
   onChangeAmount(amount: string): void
   amount: string
   connection: ConnectionType
 }
 
-const Step2: React.FC<Props> = ({ t, amount, connection, onChangeAmount, onContinue }) => {
+const Step2: React.FC<Props> = ({ amount, connection, onChangeAmount, onContinue }) => {
+  const {t} = useTranslation()
   const opacity = useFadeIn()
 
   const [note, setNote] = useState('')
@@ -94,7 +95,7 @@ const Step2: React.FC<Props> = ({ t, amount, connection, onChangeAmount, onConti
   )
 }
 
-export default withTranslation()(Step2)
+export default Step2
 
 const styles = StyleSheet.create({
   view: {

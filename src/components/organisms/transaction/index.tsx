@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import { withTranslation, WithTranslation } from 'react-i18next'
 import { format, parseISO } from 'date-fns'
 import { Animated, Image, View, Text, StyleSheet } from 'react-native'
 
@@ -9,7 +8,7 @@ import TransactionIcons from 'services/transaction-icons'
 import { Transaction as TransactionType } from 'src/types'
 import { colors } from 'constants/colors'
 
-interface Props extends WithTranslation, TransactionType {
+interface Props extends TransactionType {
   index: number
 }
 
@@ -104,4 +103,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Transaction)
+export default Transaction

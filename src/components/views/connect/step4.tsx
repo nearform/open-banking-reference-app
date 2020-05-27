@@ -1,13 +1,14 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated, Platform } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Subheader from 'components/organisms/subheader'
 
 import { colors } from 'constants/colors'
 import { useFadeIn } from 'src/utils/hooks'
 
-const Step4: React.FC<WithTranslation> = ({ t }) => {
+const Step4: React.FC = () => {
+  const {t} = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -57,4 +58,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step4)
+export default Step4

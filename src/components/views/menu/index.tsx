@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react'
 import { StyleSheet, Animated } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import SubheaderSearch from 'components/molecules/subheader/search'
 import Subheader from 'components/organisms/subheader'
@@ -8,7 +8,8 @@ import MenuOverview from 'components/organisms/menu-overview'
 import MenuList from 'components/organisms/menu'
 import { useFadeIn } from 'utils/hooks'
 
-export const Menu: React.FC<WithTranslation> = ({ t }) => {
+export const Menu: React.FC = () => {
+  const {t} = useTranslation()
   const opacity = useFadeIn({ delay: 500 } as Animated.TimingAnimationConfig)
   const animation = useRef(new Animated.Value(0.01)).current
 
@@ -73,4 +74,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Menu)
+export default Menu

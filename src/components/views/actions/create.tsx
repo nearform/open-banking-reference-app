@@ -12,9 +12,9 @@ import {
   Platform,
   ActionSheetIOS
 } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import uuid from 'uuid/v4'
-import { compose, connect, AppState, Dispatch } from 'store'
+import { connect, AppState, Dispatch } from 'store'
 import {
   createAction as createActionAction,
   updateAction as updateActionAction,
@@ -42,7 +42,7 @@ interface MatchParams {
   connection: string
 }
 
-type Props = MapStateToProps & MapDispatchToProps & RouteComponentProps<MatchParams> & WithTranslation
+type Props = MapStateToProps & MapDispatchToProps & RouteComponentProps<MatchParams>
 
 const conditions = [
   {
@@ -56,7 +56,6 @@ const conditions = [
 ]
 
 export const CreateAction: React.FC<Props> = ({
-  t,
   match: { params },
   activeAction,
   connection,
@@ -66,6 +65,7 @@ export const CreateAction: React.FC<Props> = ({
   deleteAction,
   history
 }) => {
+  const {t} = useTranslation(['common', 'transactions', 'overview', 'months'])
   const [completed, setCompleted] = useState(false)
   // all properties need default value or React will complain about unmanaged text fields
   const [edited, setEdited] = useState<Action>({
@@ -279,10 +279,7 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
   deleteAction: (action: Action) => dispatch(deleteActionAction(action))
 })
 
-export default compose(
-  connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps),
-  withTranslation(['common', 'transactions', 'overview', 'months'])
-)(CreateAction)
+export default connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)(CreateAction)
 
 const styles = StyleSheet.create({
   input: {

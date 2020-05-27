@@ -6,14 +6,15 @@ import { ScrollView, View, Animated, TouchableOpacity, Text, StyleSheet, Platfor
 import { colors } from 'constants/colors'
 import { screenNormalizer } from 'utils'
 import { useFadeIn } from 'utils/hooks'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
-interface Props extends WithTranslation {
+interface Props {
   institutions: Institution[]
   onContinue(institution: Institution): void
 }
 
-const Step1: React.FC<Props> = ({ institutions, onContinue, t }) => {
+const Step1: React.FC<Props> = ({ institutions, onContinue }) => {
+  const {t} = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -101,4 +102,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step1)
+export default Step1

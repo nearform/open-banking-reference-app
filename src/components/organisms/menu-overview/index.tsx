@@ -1,20 +1,21 @@
 import React, { useRef, useEffect } from 'react'
 import { View, Text, StyleSheet, FlatList, Animated } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import EditButton from 'components/atoms/edit-button'
 import MenuOverviewItem from 'components/molecules/menu-overview-item'
 
 import { colors } from 'constants/colors'
 
-interface Props extends WithTranslation {
+interface Props {
   animation: Animated.Value
   toggleEdit(): void
   editing: boolean
   selectedItems: string[]
 }
 
-const MenuOverview: React.FC<Props> = ({ t, animation, toggleEdit, selectedItems, editing }) => {
+const MenuOverview: React.FC<Props> = ({ animation, toggleEdit, selectedItems, editing }) => {
+  const {t} = useTranslation()
   const list = useRef<FlatList<string>>(null)
   const data = [...selectedItems, 'Edit']
 
@@ -97,4 +98,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(MenuOverview)
+export default MenuOverview
