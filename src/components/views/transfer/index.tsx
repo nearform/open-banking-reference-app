@@ -1,7 +1,7 @@
 import React from 'react'
 import { Animated, View, StyleSheet, ScrollView, Text, Image, Platform, ImageSourcePropType } from 'react-native'
 import { Link } from 'routing'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 import EditButton from 'components/atoms/edit-button'
@@ -77,7 +77,8 @@ const ListWithTitle: React.FC<ListWithTitleProps> = ({ title, list }) => (
   </>
 )
 
-export const Transfer: React.FC<WithTranslation> = ({ t }) => {
+export const Transfer: React.FC = () => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -109,7 +110,7 @@ export const Transfer: React.FC<WithTranslation> = ({ t }) => {
   )
 }
 
-export default withTranslation()(Transfer)
+export default Transfer
 
 const styles = StyleSheet.create({
   view: {

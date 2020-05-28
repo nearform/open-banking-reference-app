@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useMemo } from 'react'
 import { compose, connect, AppState } from 'store'
 import { Animated, View, Text, SectionList, StyleSheet } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { flow, groupBy, map, toPairs, reverse } from 'lodash/fp'
 import { RouteComponentProps } from 'src/routing'
 import { colors } from 'constants/colors'
@@ -46,10 +46,10 @@ const SectionHeading = (props: SectionHeadingProps) => {
   )
 }
 
-interface TransactionsProps extends RouteComponentProps, WithTranslation, MapStateToProps {}
+interface TransactionsProps extends RouteComponentProps, MapStateToProps {}
 
-export const Transactions = (props: TransactionsProps) => {
-  const { account, t } = props
+export const Transactions = ({ account }: TransactionsProps) => {
+  const { t } = useTranslation(['common', 'transactions', 'overview', 'months'])
 
   const transactions = account ? account.transactions : []
 
@@ -95,10 +95,7 @@ const mapStateToProps = (state: AppState) => ({
   account: state.accounts.accounts.find(account => account.id === state.accounts.active)
 })
 
-export default compose(
-  connect<MapStateToProps>(mapStateToProps),
-  withTranslation(['common', 'transactions', 'overview', 'months'])
-)(Transactions)
+export default compose(connect<MapStateToProps>(mapStateToProps))(Transactions)
 
 const styles = StyleSheet.create({
   view: {

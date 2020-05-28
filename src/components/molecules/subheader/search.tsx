@@ -1,22 +1,26 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import Icon from 'components/atoms/icon'
 import SearchInput from 'components/molecules/search-input'
 import { colors } from 'constants/colors'
 
-interface Props extends WithTranslation {}
+interface Props {}
 
-const SubheaderSearch: React.FC<Props> = ({ t }) => (
-  <View style={styles.container}>
-    <View style={styles.inputWrapper}>
-      <SearchInput placeholder={t('searchHeader:inputPlaceholder')} onChange={() => {}} />
+const SubheaderSearch: React.FC<Props> = () => {
+  const { t } = useTranslation()
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.inputWrapper}>
+        <SearchInput placeholder={t('searchHeader:inputPlaceholder')} onChange={() => {}} />
+      </View>
+      <View style={styles.voiceIcon}>
+        <Icon name="ic-mic" />
+      </View>
     </View>
-    <View style={styles.voiceIcon}>
-      <Icon name="ic-mic" />
-    </View>
-  </View>
-)
+  )
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -40,4 +44,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(SubheaderSearch)
+export default SubheaderSearch

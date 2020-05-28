@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated, Platform } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Subheader from 'components/organisms/subheader'
 import Icon from 'components/atoms/icon'
@@ -9,12 +9,13 @@ import { colors } from 'src/constants/colors'
 import { Connection } from 'src/types'
 import { useFadeIn } from 'utils/hooks'
 
-interface Props extends WithTranslation {
+interface Props {
   amount: string
   connection: Connection
 }
 
-const Step4: React.FC<Props> = ({ t, amount, connection }) => {
+const Step4: React.FC<Props> = ({ amount, connection }) => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -87,4 +88,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step4)
+export default Step4

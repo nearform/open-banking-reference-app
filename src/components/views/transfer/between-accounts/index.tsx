@@ -13,17 +13,16 @@ import {
   resetTransfer as resetTransferAction
 } from 'store/actions/transfers'
 import { withRouter, RouteComponentProps } from 'src/routing'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { Institution } from 'src/types'
 import { useConsent } from 'utils/hooks'
 
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 type RouteProps = RouteComponentProps<{ id: string }>
-interface Props extends MapStateToProps, MapDispatchToProps, RouteProps, WithTranslation {}
+interface Props extends MapStateToProps, MapDispatchToProps, RouteProps {}
 
 export const Transfer: React.FC<Props> = ({
-  t,
   amount,
   institutions,
   connection,
@@ -33,6 +32,7 @@ export const Transfer: React.FC<Props> = ({
   setAmount,
   setInstitution
 }) => {
+  const { t } = useTranslation()
   const [inProgress, setInProgress] = useState(false)
 
   const consent = useConsent()
@@ -115,6 +115,5 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 export default compose(
   withRouter,
-  withTranslation(),
   connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps)
 )(Transfer)

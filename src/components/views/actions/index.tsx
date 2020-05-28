@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, SectionList, ScrollView } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { compose, connect, AppState } from 'store'
 import { withRouter, RouteComponentProps } from 'routing'
@@ -15,18 +15,18 @@ import { colors } from 'constants/colors'
 type RouteProps = RouteComponentProps<{ connection: string }>
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 
-interface ActionsProps extends RouteProps, WithTranslation {
+interface ActionsProps extends RouteProps {
   actions: ActionType[]
 }
 
 export const Actions: React.FC<ActionsProps> = ({
-  t,
   history,
   actions,
   match: {
     params: { connection }
   }
 }) => {
+  const { t } = useTranslation(['common', 'transactions', 'overview', 'months'])
   const transferTypes = [
     {
       type: 'scheduled',
@@ -74,11 +74,7 @@ const mapStateToProps = (state: AppState, props: RouteProps) => ({
   })
 })
 
-export default compose(
-  withRouter,
-  connect<MapStateToProps>(mapStateToProps),
-  withTranslation(['common', 'transactions', 'overview', 'months'])
-)(Actions)
+export default compose(withRouter, connect<MapStateToProps>(mapStateToProps))(Actions)
 
 const styles = StyleSheet.create({
   view: {

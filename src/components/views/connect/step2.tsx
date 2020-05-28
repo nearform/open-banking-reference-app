@@ -1,6 +1,6 @@
 import React from 'react'
 import { ScrollView, View, Animated, TouchableOpacity, Text, StyleSheet, Platform, FlatList, Image } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 import Subheader from 'components/organisms/subheader'
@@ -10,12 +10,13 @@ import { Institution } from 'src/types'
 import { screenNormalizer } from 'utils'
 import { useFadeIn } from 'utils/hooks'
 
-interface Props extends WithTranslation {
+interface Props {
   institutions: Institution[]
   onContinue(institution: Institution): void
 }
 
-const Step2: React.FC<Props> = ({ institutions, onContinue, t }) => {
+const Step2: React.FC<Props> = ({ institutions, onContinue }) => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -104,4 +105,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step2)
+export default Step2

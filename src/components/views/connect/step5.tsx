@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated, Platform } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 import Subheader from 'components/organisms/subheader'
@@ -8,7 +8,8 @@ import Subheader from 'components/organisms/subheader'
 import { colors } from 'constants/colors'
 import { useFadeIn } from 'src/utils/hooks'
 
-const Step5: React.FC<WithTranslation> = ({ t }) => {
+const Step5: React.FC = () => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
   return (
     <Animated.View style={{ flex: 1, opacity, width: '100%' }}>
@@ -78,4 +79,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step5)
+export default Step5

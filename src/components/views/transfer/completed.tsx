@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Animated, Platform } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 import { RoundButton } from 'components/atoms/button'
@@ -10,14 +10,15 @@ import { colors } from 'constants/colors'
 import { Account, Connection } from 'src/types'
 import { useFadeIn } from 'utils/hooks'
 
-interface Props extends WithTranslation {
+interface Props {
   onContinue(): void
   account: Account
   connection: Connection
   transferredAmount: string
 }
 
-const Completed: React.FC<Props> = ({ connection, t, onContinue, account, transferredAmount }) => {
+const Completed: React.FC<Props> = ({ connection, onContinue, account, transferredAmount }) => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   return (
@@ -101,4 +102,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Completed)
+export default Completed

@@ -1,5 +1,5 @@
 import React from 'react'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { View, StyleSheet } from 'react-native'
 
 import { compose } from 'store'
@@ -9,13 +9,14 @@ import QuickAction from 'components/molecules/quick-action'
 
 import { Connection } from 'src/types'
 
-interface Props extends WithTranslation, RouteComponentProps {
+interface Props extends RouteComponentProps {
   actionsCount?: number
   onQuickAction?: Function
   connection?: Connection
 }
 
-const QuickActions: React.FC<Props> = ({ t, history, onQuickAction, actionsCount = 0, connection }) => {
+const QuickActions: React.FC<Props> = ({ history, onQuickAction, actionsCount = 0, connection }) => {
+  const { t } = useTranslation()
   const navigate = (location: string) => {
     onQuickAction && onQuickAction()
     history.push(location)
@@ -40,7 +41,7 @@ const QuickActions: React.FC<Props> = ({ t, history, onQuickAction, actionsCount
   )
 }
 
-export default compose(withRouter, withTranslation())(QuickActions)
+export default compose(withRouter)(QuickActions)
 
 const styles = StyleSheet.create({
   quickActions: {

@@ -1,14 +1,10 @@
 import React from 'react'
 
 import { Menu } from './'
-import { render, fireEvent, i18nStubProps } from 'test-utils'
-
-const stubProps = {
-  ...i18nStubProps
-}
+import { render, fireEvent } from 'test-utils'
 
 test('Menu view', () => {
-  const { getByTestId, getAllByTestId } = render(<Menu {...stubProps} />)
+  const { getByTestId, getAllByTestId } = render(<Menu />)
 
   // ensure we're showing 1 selected menu item by default
   expect(getAllByTestId('menu-overview-item')?.length).toBe(1)

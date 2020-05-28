@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { ScrollView, View, Animated, Text, StyleSheet, Platform, Image } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import Checkbox from 'components/atoms/checkbox'
 import Icon from 'components/atoms/icon'
@@ -12,13 +12,14 @@ import { screenNormalizer } from 'src/utils'
 import { colors } from 'constants/colors'
 import { useFadeIn } from 'src/utils/hooks'
 
-interface Props extends WithTranslation {
+interface Props {
   connection: Connection
   institution: Institution
   onContinue(): void
 }
 
-const Step3: React.FC<Props> = ({ connection, institution, onContinue, t }) => {
+const Step3: React.FC<Props> = ({ connection, institution, onContinue }) => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
   const [termsAccepted, setTermsAccepted] = useState(false)
   const [furtherTermsAccepted, setFurtherTermsAccepted] = useState(false)
@@ -174,4 +175,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default withTranslation()(Step3)
+export default Step3

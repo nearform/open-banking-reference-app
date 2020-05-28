@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react'
 import { View, Text, StyleSheet, Animated, Platform } from 'react-native'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { compose, connect, AppState } from 'store'
 import { withRouter, RouteComponentProps } from 'src/routing'
 
@@ -11,16 +11,16 @@ import { colors } from 'constants/colors'
 import { useFadeIn } from 'src/utils/hooks'
 
 type MapStateToProps = ReturnType<typeof mapStateToProps>
-type Props = WithTranslation & RouteComponentProps<{ id: string }> & MapStateToProps
+type Props = RouteComponentProps<{ id: string }> & MapStateToProps
 
 export const Notify: React.FC<Props> = ({
-  t,
   connections,
   history,
   match: {
     params: { id }
   }
 }) => {
+  const { t } = useTranslation()
   const opacity = useFadeIn()
 
   const connection = useMemo(() => connections.find(connection => connection.id === id), [connections, id])
@@ -60,7 +60,7 @@ const mapStateToProps = (state: AppState) => ({
   connections: state.connection.connections
 })
 
-export default compose(withRouter, withTranslation(), connect<MapStateToProps>(mapStateToProps))(Notify)
+export default compose(withRouter, connect<MapStateToProps>(mapStateToProps))(Notify)
 
 const styles = StyleSheet.create({
   view: {

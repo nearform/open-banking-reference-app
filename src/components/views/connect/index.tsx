@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Alert, Linking, Platform } from 'react-native'
 
 import { withRouter, RouteComponentProps } from 'src/routing'
-import { withTranslation, WithTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 
 import { compose, connect, AppState, Dispatch } from 'store'
 import * as connectionActions from 'store/actions/connection'
@@ -19,7 +19,7 @@ import Step5 from './step5'
 type MapStateToProps = ReturnType<typeof mapStateToProps>
 type MapDispatchToProps = ReturnType<typeof mapDispatchToProps>
 
-interface Props extends MapStateToProps, MapDispatchToProps, WithTranslation, RouteComponentProps<{ id: string }> {}
+interface Props extends MapStateToProps, MapDispatchToProps, RouteComponentProps<{ id: string }> {}
 
 export const Connect: React.FC<Props> = ({
   connection,
@@ -29,9 +29,9 @@ export const Connect: React.FC<Props> = ({
   checkConnections,
   match: {
     params: { id }
-  },
-  t
+  }
 }) => {
+  const { t } = useTranslation()
   const [step, setStep] = useState(1)
   const [institution, setInstitution] = useState<Institution>()
 
@@ -128,6 +128,5 @@ const mapDispatchToProps = (dispatch: Dispatch<any>) => ({
 
 export default compose(
   connect<MapStateToProps, MapDispatchToProps>(mapStateToProps, mapDispatchToProps),
-  withRouter,
-  withTranslation()
+  withRouter
 )(Connect)
