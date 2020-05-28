@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Linking } from 'react-native'
 import { Transfer } from './'
-import { render, fireEvent, i18nStubProps, routerStubProps, waitOnTick } from 'test-utils'
+import { render, fireEvent, routerStubProps, waitOnTick } from 'test-utils'
 import * as api from 'services/api'
 
 jest.mock('services/api')
@@ -13,7 +13,6 @@ beforeEach(() => {
 })
 
 const stubProps = {
-  ...i18nStubProps,
   ...routerStubProps,
   loadInstitutions: jest.fn(),
   setAmount: jest.fn(),

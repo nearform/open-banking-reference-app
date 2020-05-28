@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { Actions } from './'
-import { render, fireEvent, routerStubProps, i18nStubProps } from 'test-utils'
+import { render, fireEvent, routerStubProps } from 'test-utils'
 
 const stubProps = {
-  ...i18nStubProps,
   ...routerStubProps,
   match: {
     params: { connection: 'connection-id' },

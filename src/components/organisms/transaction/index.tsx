@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { format, parseISO } from 'date-fns'
+import { parseISO } from 'date-fns'
 import { Animated, Image, View, Text, StyleSheet } from 'react-native'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 import TransactionIcons from 'services/transaction-icons'
@@ -17,6 +18,7 @@ interface State {
 }
 
 const Transaction: React.FC<Props> = props => {
+  const { i18n } = useTranslation()
   const [state] = useState<State>({
     opacityAnimation: new Animated.Value(0)
   })
@@ -34,7 +36,7 @@ const Transaction: React.FC<Props> = props => {
   const { title, amount, currency, date, icon } = props
   const opacity = { opacity: state.opacityAnimation }
   const d = new Date(date)
-  const formattedDate = d.toString() === 'Invalid Date' ? date : format(parseISO(date), 'do MMM yyyy')
+  const formattedDate = d.toString() === 'Invalid Date' ? date : i18n.format(parseISO(date), 'date_do')
   let useIcon = <Icon name="ic-clothing" />
   if (icon) {
     useIcon = <Image source={TransactionIcons[icon]} style={{ width: 36, height: 36 }} />

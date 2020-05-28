@@ -31,7 +31,12 @@ const renderNodes = reactNodes => {
 
 const useMock = [k => k, {}]
 useMock.t = k => k
-useMock.i18n = {}
+useMock.i18n = {
+  format: value => {
+    const date = new Date(value)
+    return `${date.getUTCMonth()} - ${date.getUTCFullYear()}`
+  }
+}
 
 module.exports = {
   // this mock makes sure any components using the translate HoC receive the t function as a prop

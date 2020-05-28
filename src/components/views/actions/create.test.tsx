@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { CreateAction } from './create'
-import { render, fireEvent, i18nStubProps, routerStubProps } from 'test-utils'
+import { render, fireEvent, routerStubProps } from 'test-utils'
 
 const stubProps = {
-  ...i18nStubProps,
   ...routerStubProps,
   match: {
     params: { id: 'action-id' },

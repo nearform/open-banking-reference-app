@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { Messages } from './'
-import { render, fireEvent, i18nStubProps } from 'test-utils'
+import { render, fireEvent } from 'test-utils'
 
 const stubProps = {
-  ...i18nStubProps,
   awaitingResponse: true,
   sendMessage: jest.fn()
 }

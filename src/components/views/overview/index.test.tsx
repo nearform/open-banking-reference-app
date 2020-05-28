@@ -1,10 +1,9 @@
 import React from 'react'
 
 import Overview from './'
-import { render, i18nStubProps, routerStubProps } from 'test-utils'
+import { render, routerStubProps } from 'test-utils'
 
 const stubProps = {
-  ...i18nStubProps,
   ...routerStubProps,
   loadAccounts: jest.fn()
 }
