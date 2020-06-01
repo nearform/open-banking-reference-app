@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, Text, StyleSheet, TouchableWithoutFeedback } from 'react-native'
-import { format } from 'date-fns'
 import { RouteComponentProps } from 'routing'
+import { useTranslation } from 'react-i18next'
 
 import Icon from 'components/atoms/icon'
 
@@ -14,6 +14,7 @@ type Props = RouteComponentProps & {
   any
 
 const Action: React.FC<Props> = ({ name, start, end, onPress }) => {
+  const { i18n } = useTranslation()
   return (
     <TouchableWithoutFeedback onPress={onPress}>
       <View style={styles.action}>
@@ -24,7 +25,7 @@ const Action: React.FC<Props> = ({ name, start, end, onPress }) => {
           </Text>
           {start && end && (
             <Text style={styles.date}>
-              {format(start, 'do MMM yyyy')} - {format(end, 'do MMM yyyy')}
+              {i18n.format(start, 'date-do')} - {i18n.format(end, 'date-do')}
             </Text>
           )}
         </View>

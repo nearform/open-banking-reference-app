@@ -1,7 +1,7 @@
 import React from 'react'
 
 import { Notify } from './notify'
-import { render, fireEvent, i18nStubProps, routerStubProps } from 'test-utils'
+import { render, fireEvent, routerStubProps } from 'test-utils'
 
 const connection = {
   access_token: '************',
@@ -17,7 +17,6 @@ const connection = {
 test('Notify view', async () => {
   const { getByText } = render(
     <Notify
-      {...i18nStubProps}
       {...routerStubProps}
       connections={[connection]}
       match={

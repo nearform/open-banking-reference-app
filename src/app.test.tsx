@@ -3,7 +3,7 @@ import * as Permissions from 'expo-permissions'
 import { Notifications } from 'expo'
 
 import { App } from './app'
-import { render, routerStubProps, i18nStubProps, waitOnTick } from './test-utils'
+import { render, routerStubProps, waitOnTick } from './test-utils'
 import { Connection, Action, Institution, BalanceMonitor } from 'src/types'
 
 // We need to mock expo because jest can not spy on Notification methods: it fails with message.
@@ -22,7 +22,6 @@ const stubProps = {
   checkActions: jest.fn(),
   checkConnections: jest.fn(),
   setTransferAmount: jest.fn(),
-  ...i18nStubProps,
   ...routerStubProps
 }
 

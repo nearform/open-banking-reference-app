@@ -25,8 +25,15 @@ i18n
     interpolation: {
       escapeValue: false,
       format: (value: Date | string, format: string): string => {
-        if (value instanceof Date && format) return formatDate(value, format)
-        else return value.toString()
+        if (value instanceof Date && format) {
+          switch (format) {
+            case 'date_do':
+              // we should pass locale to formatDate too
+              return formatDate(value, 'do MMM yyyy')
+            default:
+              return value.toISOString()
+          }
+        } else return value.toString()
       }
     }
   })

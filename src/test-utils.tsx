@@ -56,12 +56,6 @@ export const routerStubProps = {
   match: {} as any
 }
 
-export const i18nStubProps = {
-  t: (str: string) => str,
-  tReady: true,
-  i18n: {} as any
-}
-
 export async function waitOnTick() {
   await act(() => new Promise(resolve => setTimeout(resolve, 0)))
 }

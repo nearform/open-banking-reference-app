@@ -1,10 +1,9 @@
 import React from 'react'
 
 import { Transactions } from './'
-import { render, i18nStubProps, routerStubProps } from 'test-utils'
+import { render, routerStubProps } from 'test-utils'
 
 const stubProps = {
-  ...i18nStubProps,
   ...routerStubProps
 }
 
@@ -38,6 +37,6 @@ test('Transactions view', () => {
 
   // ensure transaction values are displayed
   expect(getByText('Bank Transfer')).toBeTruthy()
-  expect(getByText('3rd Nov 2012')).toBeTruthy()
+  expect(getByText('10 - 2012')).toBeTruthy()
   expect(getByText('GBP')).toBeTruthy()
 })
