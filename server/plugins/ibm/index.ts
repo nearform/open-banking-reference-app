@@ -77,6 +77,17 @@ const proxiedRoutes: {
     }
   },
   {
+    path: '/Connection/{ConnectionId}/rm',
+    method: 'POST',
+    service: 'connection',
+    params: {
+      ConnectionId: Joi.string().required()
+    },
+    payload: {
+      id: Joi.string().allow('')
+    }
+  },
+  {
     path: '/BalanceMonitor',
     method: 'POST',
     service: 'connection',
