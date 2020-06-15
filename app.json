@@ -6,11 +6,7 @@
     "primaryColor": "#FA775E",
     "description": "A banking application from NearForm",
     "scheme": "polarisbank",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "platforms": ["ios", "android", "web"],
     "android": {
       "package": "com.nearform.polarisbank",
       "versionCode": 1,
@@ -32,12 +28,11 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "androidStatusBar": {
       "barStyle": "light-content",
       "backgroundColor": "#ffffff"
-    }
+    },
+    "entryPoint": "node_modules/expo/AppEntry.js"
   }
 }

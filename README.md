@@ -1,10 +1,29 @@
+# After Eject Warnings
+
+⚠️ Metro bundler configuration not applied:
+
+- Existing Metro configuration found; not overwriting.
+- You will need to add the hashAssetFiles plugin to your Metro configuration. Example. (​https://github.com/expo/expo/blob/master/packages/expo-updates/README.md#metroconfigjs​)
+
+⚠️ iOS configuration applied with warnings that should be fixed:
+
+- supportsTablet: You will need to configure this in the "General" tab for your project target in Xcode.
+- icon: This is the image that your app uses on your home screen, you will need to configure it manually.
+- splash: This is the image that your app uses on the loading screen, we recommend installing and using expo-splash-screen. Details. (​https://github.com/expo/expo/blob/master/packages/expo-splash-screen/README.md​)
+
+⚠️ Android configuration applied with warnings that should be fixed:
+
+- splash: This is the image that your app uses on the loading screen, we recommend installing and using expo-splash-screen. Details. (​https://github.com/expo/expo/blob/master/packages/expo-splash-screen/README.md​)
+- icon: This is the image that your app uses on your home screen, you will need to configure it manually.
+- android.adaptiveIcon: This is the image that your app uses on your home screen, you will need to configure it manually.
+
 # Polaris Bank
 
 Polaris Bank is an example application showcasing 'The next generation internet banking solution'. This example application shows customers how React Native and React can be combined to create highly cross-compatible applications over multiple channels.
 
 A Polaris Bank demo is available at [polarisbank.nearform.com][polaris-nearform].
 
- This document is intended for developers who wish to experience Polaris Bank and describes how to install and run Polaris locally. It also includes a Polaris user journey, which in addition to the demo above, shows how users can experience Polaris Bank open banking. It consists of the following sections:
+This document is intended for developers who wish to experience Polaris Bank and describes how to install and run Polaris locally. It also includes a Polaris user journey, which in addition to the demo above, shows how users can experience Polaris Bank open banking. It consists of the following sections:
 
 - [Install and Run Polaris](#Install-and-run-Polaris-on-a-Local-Machine) - Describes how to install and run Polaris on a local machine.
 - [Explore the App ](#explore-the-app) - Configure Polaris to connect to the ForgeRock open banking app.
@@ -12,12 +31,12 @@ A Polaris Bank demo is available at [polarisbank.nearform.com][polaris-nearform]
 
 ## Install and Run Polaris on a Local Machine
 
-Polaris is easy to install, run and use. 
+Polaris is easy to install, run and use.
 Before starting, let's ensure you have all the prerequisites installed.
 
 ### 1. Clone the Source Repository
 
-Fork Polaris on GitHub. It is easier to maintain your own fork as we have designed Polaris to diverge. 
+Fork Polaris on GitHub. It is easier to maintain your own fork as we have designed Polaris to diverge.
 
 After you have your fork, clone a copy of it locally using the command:
 
@@ -47,10 +66,11 @@ Polaris implements the [Open Banking][openbanking] standard.
 
 To enable Polaris to fetch bank account details from your bank, you need to register with a bank and identity platform that supports open banking.
 
-The easiest way to set this up for demonstration purposes is to contact us for some IBM credentials. Edit the `server.env` file to enter these credentials for the following variables: 
+The easiest way to set this up for demonstration purposes is to contact us for some IBM credentials. Edit the `server.env` file to enter these credentials for the following variables:
+
 - IBM_CLIENT_ID
 - IBM_CLIENT_SECRET
-- IBM_CONNECTION_URL 
+- IBM_CONNECTION_URL
 - IBM_OB_URL.
 
 ### 5. Configure the IBM Watson Assistant Chatbot (Optional)
@@ -58,13 +78,14 @@ The easiest way to set this up for demonstration purposes is to contact us for s
 Polaris includes a chatbot called [IBM Watson Assistant][watson] to show how a conversation with your bank might look. This step is optional - if you skip this step, the assistant does not respond, but Polaris still works.
 
 Configure Polaris with the IBM Watson Assistant as follows:
+
 1. Sign up for a [free account][ibmdashboard] - you are on the assistant page.
 1. Click the user icon, and select **IBM Cloud Dashboard** to go to the [IBM cloud dashboard][ibmdashboard].
 1. Click the **Services** link in the 'Resource summary' section.
-1. Click the **Assistant** link under Services in the 'Resource list'. The assistant URL and key are displayed. 
+1. Click the **Assistant** link under Services in the 'Resource list'. The assistant URL and key are displayed.
 1. Edit the `/server/.env` file to enter the displayed API key and URL value for the variables WATSON_ASSISTANT_URL and WATSON_API_KEY.
 1. Click **Launch Watson Assistant** to return to the assistant page you started on.
-1. Click the three dot menu icon to the far right of 'My first assistant'. Select **Settings** on the menu. 
+1. Click the three dot menu icon to the far right of 'My first assistant'. Select **Settings** on the menu.
 1. On the Assistant settings page, select **API details** on the left hand menu.
 1. Edit the file `/server/.env` to enter the displayed Assistant ID value for the variable WATSON_ASSISTANT_ID.
 
@@ -108,6 +129,7 @@ Before running the application, configure your environment variables as describe
 1. Restart the server and the client as described in the instructions above.
 
 Once you have both applications running, allow the service worker to run on an unsecured domain (the polarisbank.com alias) as follows:
+
 1. In Chrome open the page [chrome://flags/#unsafely-treat-insecure-origin-as-secure](chrome://flags/#unsafely-treat-insecure-origin-as-secure), add an entry for `http://polarisbank.com:3000`, toggle the flag from disabled to enabled and restart Chrome, as shown below.
 
    <img src="./docs/img/insecure-origins.png" width="600">
@@ -115,14 +137,15 @@ Once you have both applications running, allow the service worker to run on an u
    If you are using Firefox, open [Settings](about:config). Set both `dom.webnotifications.allowinsecure` and `dom.serviceWorkers.testing.enabled` to `true`. This way you'll be allowed to see notifications on a HTTP domain.
 
 1. Open the application in Chrome [http://polarisbank.com:3000](http://polarisbank.com:3000). A message to enable notification is displayed. Click **Allow** to enable a web push notification flow further in the user journey.
-Don't forget to allow notifications when your browser asks for consent!
+   Don't forget to allow notifications when your browser asks for consent!
 
 ### Set up ForgeRock Bank Integration
 
 This process is difficult and error prone. It consists of the steps below. Please follow each step carefully.
+
 - [Create a ForgeRock Directory Account](#create-a-ForgeRock-Directory-Account).
 - [Create a ForgeRock Bank Account](#create-a-ForgeRock-Bank-Account).
-- [Register your Third Party Provider (TPP) with Postman](#Register-your-third-party-provider-(TPP)-with-postman).
+- [Register your Third Party Provider (TPP) with Postman](<#Register-your-third-party-provider-(TPP)-with-postman>).
 - [Add your ForgeRock account to the Polaris Bank App](#Add-your-ForgeRock-account-to-the-polaris-bank-app).
 
 #### Create a ForgeRock Directory Account
@@ -207,9 +230,11 @@ The corresponding bank account is `damien-customer`/`Password`.
 Refer to the [ForgeRock Documentation][forgerock-doc] for more details.
 
 ### Invite User Journey
+
 This section describes a user journey where a user invites someone to connect their account. It consists of both the [inviter journey](#inviter-journey) and [invitee journey](#invitee-journey).
 
 #### Inviter Journey
+
 1. Tap **Current Account** on the Polaris Bank app overview page.
 
    <img src="./docs/img/step-1.png" width="400">
@@ -227,7 +252,8 @@ This section describes a user journey where a user invites someone to connect th
    <img src="./docs/img/step-4.png" width="400">
 
 #### Invitee Journey
-This section describes the invitee journey to connect the accounts after they receive a connect invitation. 
+
+This section describes the invitee journey to connect the accounts after they receive a connect invitation.
 
 1. In the Chrome dev tools console paste the following code to access the connection ID, `JSON.parse(localStorage.getItem("@PolarisBank:state")).connection.connections.pop().id`.
 
@@ -235,7 +261,7 @@ This section describes the invitee journey to connect the accounts after they re
 
    <img src="./docs/img/step-5.png" width="400">
 
-1. Open a new tab and navigate to [`http://polarisbank.com:3000/connect/<id>`](http://polarisbank.com:3000/connect/<id>) where `<id>` is the ID from the previous step. This displays the invitation page to allow invitees to connect their open banking account. 
+1. Open a new tab and navigate to [`http://polarisbank.com:3000/connect/<id>`](http://polarisbank.com:3000/connect/<id>) where `<id>` is the ID from the previous step. This displays the invitation page to allow invitees to connect their open banking account.
 1. Tap **Add Open Banking Account**.
 
    <img src="./docs/img/step-6.png" width="400">
