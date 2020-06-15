@@ -72,7 +72,8 @@
   },
   "menuItems": {
     "sections": {
-      "account": "Account Inquiries"
+      "account": "Account Inquiries",
+      "user": "User Details"
     },
     "account": {
       "item1": "Combined Statement",
@@ -86,6 +87,9 @@
       "item9": "Scheduled Operations",
       "item10": "Create New Saving",
       "item11": "Saving goals"
+    },
+    "user": {
+      "item1": "Log out"
     }
   },
   "transfers": {

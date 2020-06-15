@@ -202,7 +202,7 @@ export const App: React.FC<Props> = ({
       <Route path="/transactions" component={Transactions} />
       <Route path="/overview" component={Overview} />
       <Route path="/messages" component={Messages} />
-      <Route path="/menu" render={() => <Menu />} />
+      <Route path="/menu" render={() => <Menu authenticationService={service} />} />
       <Route path="/actions/:connection/edit/:id" component={CreateAction} />
       <Route path="/actions/:connection/create/:type?" component={CreateAction} />
       <Route path="/actions/:connection" component={Actions} />
