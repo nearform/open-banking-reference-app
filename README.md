@@ -3,9 +3,13 @@
 ### install pods and npm modules
 
 npm install
+
 cd ios
+
 pod install (or npx pod-install)
+
 cd ..
+
 react-native start (start metro js builder)
 
 ### run in iOS simulator (open new terminal tab)
