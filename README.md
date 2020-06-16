@@ -1,9 +1,18 @@
+# After Eject How to Run
+
+### install pods and npm modules
+
+npm install
+cd ios
+pod install (or npx pod-install)
+cd ..
+react-native start (start metro js builder)
+
+### run in iOS simulator (open new terminal tab)
+
+react-native run-ios
+
 # After Eject Warnings
-
-⚠️ Metro bundler configuration not applied:
-
-- Existing Metro configuration found; not overwriting.
-- You will need to add the hashAssetFiles plugin to your Metro configuration. Example. (​https://github.com/expo/expo/blob/master/packages/expo-updates/README.md#metroconfigjs​)
 
 ⚠️ iOS configuration applied with warnings that should be fixed:
 
