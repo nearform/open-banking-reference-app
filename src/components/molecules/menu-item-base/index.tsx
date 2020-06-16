@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, Animated, View, Text, TouchableOpacity, Platform } from 'react-native'
+import { StyleSheet, Animated, View, Text, TouchableOpacity, Platform, TouchableWithoutFeedback } from 'react-native'
 import { Link } from 'routing'
 
 import Icon from 'components/atoms/icon'
@@ -12,9 +12,10 @@ interface Props {
   checked: boolean
   animation: Animated.Value
   onMenuItemToggle(item: string, checked: boolean): void
+  onClick: (() => void) | null
 }
 
-const MenuItemBase: React.FC<Props> = ({ item, checked, animation, onMenuItemToggle }) => {
+const MenuItemBase: React.FC<Props> = ({ item, checked, animation, onMenuItemToggle, onClick }) => {
   const paddingStyle = {
     transform: [
       {
@@ -46,16 +47,24 @@ const MenuItemBase: React.FC<Props> = ({ item, checked, animation, onMenuItemTog
       <Animated.View style={[itemStyles.checkbox, translateStyle]}>
         <Checkbox value={item} checked={checked} onChange={onMenuItemToggle} />
       </Animated.View>
-      <Link
-        to="/overview"
-        {...(Platform.OS !== 'web' && { component: TouchableOpacity, activeOpacity: 0.5 })}
-        style={{ flex: 1 }}
-      >
-        <View style={itemStyles.row}>
-          <Text style={itemStyles.text}>{item}</Text>
-          <Icon name="ic-chevron" />
-        </View>
-      </Link>
+      {onClick ? (
+        <TouchableWithoutFeedback onPress={onClick}>
+          <View style={itemStyles.row}>
+            <Text style={itemStyles.text}>{item}</Text>
+          </View>
+        </TouchableWithoutFeedback>
+      ) : (
+        <Link
+          to="/overview"
+          {...(Platform.OS !== 'web' && { component: TouchableOpacity, activeOpacity: 0.5 })}
+          style={{ flex: 1 }}
+        >
+          <View style={itemStyles.row}>
+            <Text style={itemStyles.text}>{item}</Text>
+            <Icon name="ic-chevron" />
+          </View>
+        </Link>
+      )}
     </Animated.View>
   )
 }

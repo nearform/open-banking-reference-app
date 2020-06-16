@@ -12,6 +12,10 @@ export enum AuthenticationState {
   Authenticated = 'authenticated'
 }
 
+export enum AuthenticationEvents {
+  Logout = 'logout'
+}
+
 export type AuthenticationSchema = {
   states: { [key in AuthenticationState]: {} }
 }
@@ -43,6 +47,14 @@ export const verifyLogin = (pin: string) =>
 
 export const persistLogin = (pin: string) => AsyncStorage.setItem('@PolarisBank:pin', pin)
 
+export const logout = async () => {
+  try {
+    await AsyncStorage.removeItem('@PolarisBank:pin')
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
 export const authenticationMachine = Machine<{}, AuthenticationSchema, AuthenticationEvent>(
   {
     id: 'authenticationMachine',
@@ -71,7 +83,12 @@ export const authenticationMachine = Machine<{}, AuthenticationSchema, Authentic
       },
       [AuthenticationState.Authenticated]: {
         entry: 'persistLogin',
-        type: 'final'
+        on: {
+          [AuthenticationEvents.Logout]: {
+            target: AuthenticationState.Unauthenticated,
+            actions: logout
+          }
+        }
       }
     }
   },

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { StyleSheet, Animated } from 'react-native'
 import { useTranslation } from 'react-i18next'
 
@@ -7,11 +7,27 @@ import Subheader from 'components/organisms/subheader'
 import MenuOverview from 'components/organisms/menu-overview'
 import MenuList from 'components/organisms/menu'
 import { useFadeIn } from 'utils/hooks'
+import { useService } from '@xstate/react'
+import { AuthenticationEvent, AuthenticationEvents, AuthenticationSchema, AuthenticationState } from 'utils/machines'
+import { useHistory } from 'react-router'
+import { Interpreter } from 'xstate'
 
-export const Menu: React.FC = () => {
+interface Props {
+  authenticationService: Interpreter<{}, AuthenticationSchema, AuthenticationEvent>
+}
+
+export const Menu: React.FC<Props> = ({ authenticationService }) => {
+  const history = useHistory()
   const { t } = useTranslation()
   const opacity = useFadeIn({ delay: 500 } as Animated.TimingAnimationConfig)
   const animation = useRef(new Animated.Value(0.01)).current
+  const [current, send] = useService(authenticationService)
+
+  useEffect(() => {
+    if (current.matches(AuthenticationState.Unauthenticated)) {
+      history.push('/login')
+    }
+  }, [current, history])
 
   const [editing, setEditing] = useState(false)
   const [selectedItems, setSelectedItems] = useState<Array<string>>([t('menuItems:account:item2')])
@@ -34,6 +50,12 @@ export const Menu: React.FC = () => {
     }
   }
 
+  const handleLogout = () => send(AuthenticationEvents.Logout)
+
+  const handlers = {
+    1: handleLogout
+  }
+
   const data = [
     {
       title: t('menuItems:sections:account'),
@@ -50,6 +72,10 @@ export const Menu: React.FC = () => {
         t('menuItems:account:item10'),
         t('menuItems:account:item11')
       ]
+    },
+    {
+      title: t('menuItems:sections:user'),
+      data: [{ id: 1, value: t('menuItems:user:item1') }]
     }
   ]
   return (
@@ -61,6 +87,7 @@ export const Menu: React.FC = () => {
         selectedItems={selectedItems}
         onMenuItemToggle={handleCheckboxChange}
         animation={animation}
+        handlers={handlers}
       />
     </Animated.View>
   )

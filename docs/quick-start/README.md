@@ -83,6 +83,8 @@ npm run start:web
 
 This automatically opens an [Expo] console in your browser that displays the phase of the Polaris build process. When Expo finishes building Polaris, it automatically opens another tab running Polaris.
 
+The default pin for the demo app is: **123456**
+
 Congratulations! You are now running Polaris locally.
 
 ### Run Polaris on Native Devices

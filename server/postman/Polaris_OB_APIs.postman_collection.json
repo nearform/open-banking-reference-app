@@ -1,0 +1,766 @@
+{
+  "info": {
+    "_postman_id": "1c3bd623-5d59-4487-8e57-b8cddd5e5367",
+    "name": "Polaris OB APIs",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "APIs",
+      "item": [
+        {
+          "name": "Accounts",
+          "item": [
+            {
+              "name": "GET /accounts",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "equals": false,
+                    "key": "x-provider",
+                    "value": ""
+                  },
+                  {
+                    "equals": false,
+                    "key": "x-provider-access-token",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts"]
+                },
+                "description": "Get provider accounts"
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "key": "accountId",
+                      "value": "",
+                      "type": "text"
+                    }
+                  ],
+                  "options": {
+                    "urlencoded": {}
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}"]
+                },
+                "description": "Get provider account details"
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/balances",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/balances",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "balances"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/beneficiaries",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/beneficiaries",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "beneficiaries"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/direct-debits",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/direct-debits",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "direct-debits"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/scheduled-payments",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/scheduled-payments",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "scheduled-payments"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/standing-orders",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "type": "text",
+                    "value": ""
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "type": "text",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/standing-orders",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "standing-orders"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/statements",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "type": "text",
+                    "value": ""
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "type": "text",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/statements",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "statements"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /accounts/{AccountId}/transactions",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "type": "text",
+                    "value": ""
+                  },
+                  {
+                    "key": "x-provier-access-token",
+                    "type": "text",
+                    "value": ""
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/accounts/{{AccountId}}/transactions",
+                  "host": ["{{baseURL}}"],
+                  "path": ["accounts", "{{AccountId}}", "transactions"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "AccountAuthorizationRequest",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"\",\n  \"institution_id\": \"\",\n  \"callback_url\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/AccountAuthorizationRequest",
+                  "host": ["{{baseURL}}"],
+                  "path": ["AccountAuthorizationRequest"]
+                },
+                "description": "Authorize account"
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "BalanceMonitor",
+          "item": [
+            {
+              "name": "GET /BalanceMonitor",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": ""
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST /BalanceMonitor",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/BalanceMonitor",
+                  "host": ["{{baseURL}}"],
+                  "path": ["BalanceMonitor"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /BalanceMonitor/{BalanceMonitorId}",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}//BalanceMonitor/{{BalanceMonitorId}}",
+                  "host": ["{{baseURL}}"],
+                  "path": ["", "BalanceMonitor", "{{BalanceMonitorId}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST /BalanceMonitor/{BalanceMonitorId}/rm",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}//BalanceMonitor/{{BalanceMonitorId}}/rm",
+                  "host": ["{{baseURL}}"],
+                  "path": ["", "BalanceMonitor", "{{BalanceMonitorId}}", "rm"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Connection",
+          "item": [
+            {
+              "name": "GET /Connection",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/Connection",
+                  "host": ["{{baseURL}}"],
+                  "path": ["Connection"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST /Connection",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"hub_user_id\": \"\",\n  \"hub_name\": \"\",\n  \"connection_name\": \"\",\n  \"phone_number\": \"\",\n  \"access_token\": \"\",\n  \"account_number\": \"\",\n  \"sort_code\": \"\",\n  \"IBAN\": \"\",\n  \"email\": \"\",\n  \"invitation\": \"\",\n  \"status\": \"\",\n  \"notification_url\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/Connection",
+                  "host": ["{{baseURL}}"],
+                  "path": ["Connection"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "GET /Connection/{ConnectionId}",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseURL}}/Connection/{{ConnectionId}}",
+                  "host": ["{{baseURL}}"],
+                  "path": ["Connection", "{{ConnectionId}}"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "PUT /Connection/{ConnectionId}",
+              "request": {
+                "method": "PUT",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"\",\n  \"hub_user_id\": \"\",\n  \"hub_name\": \"\",\n  \"connection_name\": \"\",\n  \"phone_number\": \"\",\n  \"access_token\": \"\",\n  \"account_number\": \"\",\n  \"sort_code\": \"\",\n  \"IBAN\": \"\",\n  \"email\": \"\",\n  \"invitation\": \"\",\n  \"status\": \"\",\n  \"notification_url\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/Connection/{{ConnectionId}}",
+                  "host": ["{{baseURL}}"],
+                  "path": ["Connection", "{{ConnectionId}}"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Payment",
+          "item": [
+            {
+              "name": "POST /Payment",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"\",\n  \"institution_id\": \"\",\n  \"amount\": \"\",\n  \"currency\": \"\",\n  \"payee_name\": \"\",\n  \"payee_sort_code\": \"\",\n  \"payee_acc_number\": \"\",\n  \"payee_IBAN\": \"\",\n  \"consent_token\": \"\",\n  \"payment_id\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/Payment",
+                  "host": ["{{baseURL}}"],
+                  "path": ["Payment"]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST /PaymentAuthorizationRequest",
+              "request": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"\",\n  \"institution_id\": \"\",\n  \"callback_url\": \"\",\n  \"amount\": \"\",\n  \"currency\": \"\",\n  \"payee_name\": \"\",\n  \"payee_sort_code\": \"\",\n  \"payee_acc_number\": \"\",\n  \"payee_IBAN\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/PaymentAuthorizationRequest",
+                  "host": ["{{baseURL}}"],
+                  "path": ["PaymentAuthorizationRequest"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "Session",
+          "item": [
+            {
+              "name": "GET /session",
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseURL}}/session?redirectUri",
+                  "host": ["{{baseURL}}"],
+                  "path": ["session"],
+                  "query": [
+                    {
+                      "key": "redirectUri",
+                      "value": null
+                    }
+                  ]
+                }
+              },
+              "response": []
+            },
+            {
+              "name": "POST /session",
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "x-provider",
+                    "value": "",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"\",\n  \"redirectUri\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseURL}}/session",
+                  "host": ["{{baseURL}}"],
+                  "path": ["session"]
+                }
+              },
+              "response": []
+            }
+          ],
+          "protocolProfileBehavior": {},
+          "_postman_isSubFolder": true
+        },
+        {
+          "name": "GET /health-check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/health-check",
+              "host": ["{{baseURL}}"],
+              "path": ["health-check"]
+            },
+            "description": "checks system status"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /Institution",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/Institution",
+              "host": ["{{baseURL}}"],
+              "path": ["Institution"]
+            },
+            "description": "Returns Institution list"
+          },
+          "response": []
+        },
+        {
+          "name": "GET /providers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseURL}}/providers",
+              "host": ["{{baseURL}}"],
+              "path": ["providers"]
+            },
+            "description": "Returns a list of providers"
+          },
+          "response": []
+        }
+      ],
+      "description": "Backend APIs",
+      "protocolProfileBehavior": {}
+    },
+    {
+      "name": "Create Connection",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-ibm-client-id",
+            "value": "7d6d8835-ccc0-4ec9-b21f-44b5e6b78f0a"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"hub_user_id\": \"Mason\",\n    \"name\": \"Marian Padilla\",\n    \"phone_number\": \"(578) 798-7007\",\n    \"access_token\": \"340596088489089\",\n    \"account_number\": \"343187298683815\",\n    \"sort_code\": \"zariww\",\n    \"IBAN\": \"DE89 3704 0044 0532 0130 00\",\n    \"email\": \"loker@uvjo.ml\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.eu-gb.apiconnect.appdomain.cloud/openbanking-tpp/sb/PrwWps/Connection",
+          "protocol": "https",
+          "host": ["api", "eu-gb", "apiconnect", "appdomain", "cloud"],
+          "path": ["openbanking-tpp", "sb", "PrwWps", "Connection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Connection by ID",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "x-ibm-client-id",
+            "value": "7d6d8835-ccc0-4ec9-b21f-44b5e6b78f0a"
+          }
+        ],
+        "url": {
+          "raw": "https://api.eu-gb.apiconnect.appdomain.cloud/openbanking-tpp/sb/PrwWps/Connection/{{connection-id}}",
+          "protocol": "https",
+          "host": ["api", "eu-gb", "apiconnect", "appdomain", "cloud"],
+          "path": ["openbanking-tpp", "sb", "PrwWps", "Connection", "{{connection-id}}"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Connections",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "x-ibm-client-id",
+            "value": "7d6d8835-ccc0-4ec9-b21f-44b5e6b78f0a"
+          }
+        ],
+        "url": {
+          "raw": "https://api.eu-gb.apiconnect.appdomain.cloud/openbanking-tpp/sb/PrwWps/Connection",
+          "protocol": "https",
+          "host": ["api", "eu-gb", "apiconnect", "appdomain", "cloud"],
+          "path": ["openbanking-tpp", "sb", "PrwWps", "Connection"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Create BalanceMonitor",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-ibm-client-id",
+            "value": "7d6d8835-ccc0-4ec9-b21f-44b5e6b78f0a"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"connection_id\": \"555064da9ee411a28a714cb2e2b4481a\",\n    \"threshold\": 59,\n    \"payment_amount\": 8,\n    \"notification_url\": \"http://fapugri.im/gobodah\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.eu-gb.apiconnect.appdomain.cloud/openbanking-tpp/sb/PrwWps/BalanceMonitor",
+          "protocol": "https",
+          "host": ["api", "eu-gb", "apiconnect", "appdomain", "cloud"],
+          "path": ["openbanking-tpp", "sb", "PrwWps", "BalanceMonitor"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Connection",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "accept",
+            "value": "application/json"
+          },
+          {
+            "key": "Content-Type",
+            "name": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          },
+          {
+            "key": "x-ibm-client-id",
+            "value": "7d6d8835-ccc0-4ec9-b21f-44b5e6b78f0a"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"hub_user_id\": \"Ftjasidj\",\n    \"name\": \"Rhoda Brewer\",\n    \"phone_number\": \"(771) 382-1245\",\n    \"access_token\": \"5437780863077953\",\n    \"account_number\": \"4026943469139631\",\n    \"sort_code\": \"idumozz\",\n    \"IBAN\": \"DE89 3704 0044 0532 0130 00\",\n    \"email\": \"marwodve@egalu.an\"\n    \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://api.eu-gb.apiconnect.appdomain.cloud/openbanking-tpp/sb/PrwWps/Connection/{{connection-id}}",
+          "protocol": "https",
+          "host": ["api", "eu-gb", "apiconnect", "appdomain", "cloud"],
+          "path": ["openbanking-tpp", "sb", "PrwWps", "Connection", "{{connection-id}}"]
+        }
+      },
+      "response": []
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "id": "63c87364-57fc-4ba7-b830-00dec74f2c76",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "id": "b2f7b91c-f0b0-49ef-8604-c24b801423a5",
+        "type": "text/javascript",
+        "exec": [""]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "id": "4e01a4ff-21bf-43f9-9543-9d154be22a88",
+      "key": "connection-id",
+      "value": "9459d490cd223fe877c8d2dcf8e0f5d1",
+      "type": "string"
+    }
+  ],
+  "protocolProfileBehavior": {}
+}
