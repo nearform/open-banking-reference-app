@@ -25,6 +25,7 @@ const AccountView: React.FC<Props> = ({ account, connection, highlight, showActi
       currency: account?.currency,
       currencySymbol: getSymbol(account?.currency)
     }),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [account, connection]
   )
   return (

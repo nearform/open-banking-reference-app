@@ -26,7 +26,7 @@ export type PinSchema = {
   states: { [key in PinState]: {} }
 }
 
-type InputEvent = { type: PinEventType.Input; key: string }
+type InputEvent = { type: any; key: string }
 
 export type PinEvent = InputEvent | { type: PinEventType.Delete } | { type: PinEventType.Submit }
 
