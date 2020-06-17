@@ -58,6 +58,7 @@
     "react-spring": "^8.0.27",
     "svg-path-properties": "^0.4.8",
     "tree-kill": "^1.2.2",
+    "ts-jest": "^26.1.0",
     "use-interval": "^1.2.1",
     "xstate": "^4.10.0"
   },
@@ -106,21 +107,29 @@
     ]
   },
   "jest": {
-    "preset": "jest-expo",
+    "preset": "react-native",
     "testTimeout": 10000,
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|unimodules-permissions-interface|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base|react-router-native|react-router-navigation|@babel)"
     ],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "automock": false,
     "moduleNameMapper": {
-      "^store(.*)$": "<rootDir>/src/store$1",
-      "^components(.*)$": "<rootDir>/src/components$1",
-      "^src(.*)$": "<rootDir>/src$1",
-      "^utils(.*)$": "<rootDir>/src/utils$1",
-      "^constants(.*)$": "<rootDir>/src/constants$1",
-      "^assets(.*)$": "<rootDir>/src/assets$1",
+      "^store/(.*)$": "<rootDir>/src/store/$1",
+      "^components/(.*)$": "<rootDir>/src/components/$1",
+      "^src/(.*)$": "<rootDir>/src/$1",
+      "^utils/(.*)$": "<rootDir>/src/utils/$1",
+      "^constants/(.*)$": "<rootDir>/src/constants/$1",
+      "^assets/(.*)$": "<rootDir>/src/assets/$1",
       "^routing(.*)$": "<rootDir>/src/routing$1",
-      "^services(.*)$": "<rootDir>/src/services$1",
+      "^services/(.*)/$": "<rootDir>/src/services/$1",
       "^test-utils(.*)$": "<rootDir>/src/test-utils"
     },
     "setupFilesAfterEnv": [
@@ -177,7 +186,7 @@
     "expo-cli": "^3.21.5",
     "gh-pages": "^2.2.0",
     "husky": "^4.2.5",
-    "jest": "~25.2.6",
+    "jest": "^26.0.1",
     "jest-expo": "^37.0.0",
     "jest-fetch-mock": "^3.0.3",
     "lint-staged": "^10.2.10",
