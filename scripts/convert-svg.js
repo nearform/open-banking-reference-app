@@ -2,6 +2,7 @@ const svgr = require('@svgr/core').default
 const path = require('path')
 const fs = require('fs')
 const fsp = fs.promises
+const chalk = require('chalk')
 const { camelCase, upperFirst } = require('lodash')
 
 process.on('unhandledRejection', err => {
@@ -33,12 +34,8 @@ const imageOutputPath = path.resolve(atomsPath, 'images')
 const imagesPath = path.resolve(assetsPath, 'images')
 const targetImagesPath = path.resolve(imagesPath, UPDATE ? '' : 'new')
 
-try {
-  convertAllInDir(targetIconsPath, iconOutputPath, iconsPath, getTemplate(true))
-  convertAllInDir(targetImagesPath, imageOutputPath, imagesPath, getTemplate(false))
-} catch (err) {
-  err.throw()
-}
+convertAllInDir(targetIconsPath, iconOutputPath, iconsPath, getTemplate(true))
+convertAllInDir(targetImagesPath, imageOutputPath, imagesPath, getTemplate(false))
 
 const indexDTsContent = `/* eslint-disable no-redeclare */
 
@@ -54,24 +51,44 @@ export * from './index.web'
 
 async function convertAllInDir(srcPath, outputPath, srcStoragePath, template) {
   if (!fs.existsSync(srcPath)) {
-    console.log(`No directory ${srcPath} found`)
+    console.warn(chalk.bold.yellow(`No directory ${srcPath} found`))
+    return
   }
   const files = await fsp.readdir(srcPath, { withFileTypes: true })
   const svgFiles = files.filter(dirent => dirent.isFile() && dirent.name.match(/\.svg$/))
 
+  const filesCount = svgFiles.length
+  const relativeSource = path.relative('.', srcPath)
+  if (!filesCount) {
+    console.log(chalk.blue(`No SVG files to convert in ${relativeSource}`))
+    return
+  }
+  console.log(
+    chalk.blue(`Converting ${filesCount} SVG file${svgFiles.length === 1 ? '' : 's'} in ${relativeSource}...`)
+  )
+
   let filesConverted = 0
 
-  const results = svgFiles.map(async ({ name }) => {
-    const file = await fsp.readFile(path.resolve(srcPath, name))
+  const convertPromises = svgFiles.map(async ({ name }) => {
+    const filePath = path.resolve(srcPath, name)
+    const file = await fsp.readFile(filePath)
     const svgContent = file.toString()
     const success = await convertFile(svgContent, name, outputPath, template)
-    if (srcPath !== srcStoragePath) await moveFile(name, srcPath, srcStoragePath)
-    if (success) filesConverted++
+    if (success) {
+      filesConverted++
+    } else {
+      console.warn(chalk.bold.red(`Failed to convert ${path.relative('.', filePath)}`))
+    }
   })
 
-  await Promise.all(results)
-  const successes = results.filter(result => !!result)
-  console.log(`Converted ${successes.length} files in ${srcPath}`)
+  await Promise.all(convertPromises)
+  const color = filesCount === filesConverted ? 'green' : 'yellow'
+  const relativeTarget = path.relative('.', outputPath)
+  console.log(
+    chalk.bold[color](
+      `Converted ${filesConverted} of ${filesCount} SVG file${filesCount === 1 ? '' : 's'} to ${relativeTarget}`
+    )
+  )
 }
 
 async function convertFile(svgContent, filename, outputPath, template) {
@@ -86,11 +103,16 @@ async function convertFile(svgContent, filename, outputPath, template) {
     await fsp.mkdir(dirPath, { recursive: true })
   }
 
-  await Promise.all([
-    writeNativeSvgComponent(svgContent, componentName, dirPath, template),
-    writeWebSvgComponent(svgContent, componentName, dirPath, template),
-    writeOrReplaceFile(path.resolve(dirPath, 'index.d.ts'), indexDTsContent)
-  ])
+  try {
+    await Promise.all([
+      writeNativeSvgComponent(svgContent, componentName, dirPath, template),
+      writeWebSvgComponent(svgContent, componentName, dirPath, template),
+      writeOrReplaceFile(path.resolve(dirPath, 'index.d.ts'), indexDTsContent)
+    ])
+  } catch (err) {
+    console.error(chalk.bold.red(`Failed to convert "${filename}": `) + err.toString())
+    return false
+  }
 
   return true
 }
@@ -131,10 +153,12 @@ async function writeSvgComponent(name, svgContent, filename, outputPath, templat
       }
     )
   } catch (err) {
-    console.error(`svgr failed on file "${name}": ${err.toString()}`)
-    return
+    // Make it clearer than in the default error that it occured inside the applied template
+    err.message = ` ${chalk.bold.bgRed(' Error applying svgr template ')} ${err.message}`
+    throw err
   }
-  await writeOrReplaceFile(filePath, tsCode)
+  const result = await writeOrReplaceFile(filePath, tsCode)
+  return result
 }
 
 async function writeOrReplaceFile(filePath, fileContent) {
