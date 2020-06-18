@@ -118,18 +118,17 @@ exports[`App doesn't render a view until we've checked if the user has been prev
               >
                 <G
                   fill="none"
-                  fill-rule="nonzero"
                   transform="translate(0 .55)"
                 >
                   <Path
-                    d="M2 11.45c0-4.97 4.03-9 9-9 3.434 0 6.521 1.94 8.04 4.952l1.786-.9C18.97 2.821 15.196.45 11 .45c-6.075 0-11 4.925-11 11h2zM20 11.45c0 4.972-4.03 9-9 9-3.434 0-6.521-1.939-8.04-4.95l-1.786.9c1.856 3.68 5.63 6.05 9.826 6.05 6.075 0 11-4.924 11-11h-2z"
+                    d="M2 11.45a9 9 0 0117.04-4.048l1.786-.9A10.996 10.996 0 0011 .45c-6.075 0-11 4.925-11 11h2zm18 0a9 9 0 01-9 9 8.997 8.997 0 01-8.04-4.95l-1.786.9A10.996 10.996 0 0011 22.45c6.075 0 11-4.924 11-11h-2z"
                     fill="#2165E2"
                   />
                   <Circle
-                    cx="11"
-                    cy="11.451"
+                    cx={11}
+                    cy={11.451}
                     fill="#111"
-                    r="2"
+                    r={2}
                   />
                   <Path
                     d="M13.19 5.151l-.266 1.982 7.93 1.062 1.06-7.93L19.934 0l-.796 5.947zM8.81 17.75l.266-1.982-7.93-1.061-1.06 7.93 1.981.265.796-5.947z"
@@ -189,6 +188,7 @@ exports[`App doesn't render a view until we've checked if the user has been prev
               testID="icon-button"
             >
               <Svg
+                fill="#000"
                 height="20"
                 viewBox="0 0 20 20"
                 width="20"
@@ -200,9 +200,9 @@ exports[`App doesn't render a view until we've checked if the user has been prev
                   />
                 </Defs>
                 <Use
-                  fill="#000"
+                  fill="#2165E2"
                   fillRule="evenodd"
-                  href="#prefix__a"
+                  xlinkHref="#prefix__a"
                 />
               </Svg>
             </View>
