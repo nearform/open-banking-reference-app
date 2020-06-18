@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import React, { createContext, useReducer, useContext } from 'react'
 import combinedReducer, { AppState } from './reducers'
 

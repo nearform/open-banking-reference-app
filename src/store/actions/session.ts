@@ -1,5 +1,5 @@
-import { AsyncStorage } from 'react-native'
-import { loadTokens as loadTokensService } from '../../services/api'
+import AsyncStorage from '@react-native-community/async-storage'
+import { loadTokens as loadTokensService } from 'services/api'
 import { GetState, Dispatch } from '../index'
 import { SessionState } from '../reducers/session'
 import { completeConnection } from './connection'

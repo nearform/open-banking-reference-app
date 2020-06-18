@@ -4,7 +4,7 @@ import { mockStore } from 'test-utils'
 import { sendMessage } from './assistant'
 
 test('sendMessage() with successful response', () => {
-  window.fetch = jest.fn().mockImplementation(() => {
+  ;(global as any).fetch = jest.fn().mockImplementation(() => {
     return Promise.resolve({
       json: function () {
         return { text: 'test message' }
@@ -30,7 +30,7 @@ test('sendMessage() with successful response', () => {
 })
 
 test('sendMessage() with unsuccessful response', () => {
-  window.fetch = jest.fn().mockImplementation(() => {
+  ;(global as any).fetch = jest.fn().mockImplementation(() => {
     return Promise.reject(new Error('error'))
   })
 

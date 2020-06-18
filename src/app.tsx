@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { AsyncStorage, StatusBar } from 'react-native'
+import { StatusBar } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { useMachine } from '@xstate/react'
 import { compose, connect, AppState, Dispatch } from 'store'
 import { Redirect, Route, Router, withRouter, RouteComponentProps } from 'routing'

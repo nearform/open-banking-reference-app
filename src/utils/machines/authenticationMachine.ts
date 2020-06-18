@@ -1,5 +1,5 @@
 import { Machine } from 'xstate'
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 
 import { pinMachine } from './pinMachine'
 

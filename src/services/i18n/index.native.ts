@@ -1,6 +1,6 @@
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import * as Localization from 'expo-localization'
+import * as RNLocalize from 'react-native-localize'
 import { fallback, defaultNamespace, namespaces, supportedLocales } from './common'
 import { format as formatDate } from 'date-fns'
 
@@ -8,7 +8,8 @@ const languageDetector = {
   type: 'languageDetector' as 'languageDetector',
   async: true,
   detect: async (callback: (lang: string) => void) => {
-    callback(Localization.locale.split('-')[0])
+    const lang = RNLocalize.getLocales()[0].languageCode || 'en'
+    callback(lang)
   },
   init: () => {},
   cacheUserLanguage: () => {}

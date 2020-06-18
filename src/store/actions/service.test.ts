@@ -4,7 +4,7 @@ import { mockStore } from 'test-utils'
 import { queryStatus } from './service'
 
 test('queryStatus() with successful response', () => {
-  window.fetch = jest.fn().mockImplementation(() => {
+  ;(global as any).fetch = jest.fn().mockImplementation(() => {
     return Promise.resolve({
       ok: true
     })
@@ -27,7 +27,7 @@ test('queryStatus() with successful response', () => {
 })
 
 test('queryStatus() with unsuccessful response', () => {
-  window.fetch = jest.fn().mockImplementation(() => {
+  ;(global as any).fetch = jest.fn().mockImplementation(() => {
     return Promise.reject(new Error('error'))
   })
 

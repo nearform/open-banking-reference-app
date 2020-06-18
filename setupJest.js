@@ -1,8 +1,25 @@
 require('jest-fetch-mock').enableMocks()
 require('@testing-library/jest-dom')
 require('@testing-library/jest-native/extend-expect')
+const mockAsyncStorage = require('@react-native-community/async-storage/jest/async-storage-mock')
 
 jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper')
+jest.mock('@react-native-community/async-storage', () => mockAsyncStorage)
+
+jest.mock('react-native-device-info', () => {
+  return {
+    getModel: jest.fn()
+  }
+})
+
+jest.mock('react-native-localize', () => {
+  return {
+    getLocales: () => [
+      { countryCode: 'US', languageTag: 'en-US', languageCode: 'en', isRTL: false },
+      { countryCode: 'FR', languageTag: 'fr-FR', languageCode: 'fr', isRTL: false }
+    ]
+  }
+})
 
 process.env.REACT_APP_PIN = '987654'
 

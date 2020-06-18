@@ -1,6 +1,6 @@
 import { initialState } from 'store'
 import * as apiServices from 'services/api'
-import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-community/async-storage'
 import { mockStore } from 'test-utils'
 
 import { loadTokens, initSession } from './session'
