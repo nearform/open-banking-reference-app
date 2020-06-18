@@ -211,7 +211,7 @@ ${exports}
 
 async function updateIndex(outputPath, isIcon) {
   const filePath = path.resolve(outputPath, 'index.ts')
-  console.log(chalk.blue(`Updating index at ${path.relative('.', filePath)}...`))
+  console.log(chalk.bold.blue(`Updating index at ${path.relative('.', filePath)}...`))
   const dirContents = await fsp.readdir(outputPath, { withFileTypes: true })
   const componentDirNames = []
   for (const dirent of dirContents) {
