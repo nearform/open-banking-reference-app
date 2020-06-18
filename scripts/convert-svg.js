@@ -5,12 +5,18 @@ const fsp = fs.promises
 const chalk = require('chalk')
 const { camelCase, upperFirst } = require('lodash')
 
+const { argv } = require('yargs').options({
+  update: {
+    alias: 'u',
+    describe: 'Update existing SVG components from current SVG assets',
+    type: 'boolean'
+  }
+})
+const UPDATE = !!argv.update
+
 process.on('unhandledRejection', err => {
   throw err
 })
-
-// TODO: replace this with a CLI arg
-const UPDATE = true
 
 const defaultConfig = {
   plugins: ['@svgr/plugin-svgo', '@svgr/plugin-jsx', '@svgr/plugin-prettier'],
@@ -28,14 +34,12 @@ const atomsPath = path.resolve('src', 'components', 'atoms')
 
 const iconOutputPath = path.resolve(atomsPath, 'icons')
 const iconsPath = path.resolve(assetsPath, 'icons')
-const targetIconsPath = path.resolve(iconsPath, UPDATE ? '' : 'new')
 
 const imageOutputPath = path.resolve(atomsPath, 'images')
 const imagesPath = path.resolve(assetsPath, 'images')
-const targetImagesPath = path.resolve(imagesPath, UPDATE ? '' : 'new')
 
-convertAllInDir(targetIconsPath, iconOutputPath, iconsPath, getTemplate(true))
-convertAllInDir(targetImagesPath, imageOutputPath, imagesPath, getTemplate(false))
+convertAllInDir(iconOutputPath, iconsPath, getTemplate(true))
+convertAllInDir(imageOutputPath, imagesPath, getTemplate(false))
 
 const indexDTsContent = `/* eslint-disable no-redeclare */
 
@@ -49,27 +53,37 @@ export { default } from './index.web'
 export * from './index.web'
 `
 
-async function convertAllInDir(srcPath, outputPath, srcStoragePath, template) {
+async function convertAllInDir(outputPath, srcPath, template) {
   if (!fs.existsSync(srcPath)) {
     console.warn(chalk.bold.yellow(`No directory ${srcPath} found`))
     return
   }
   const files = await fsp.readdir(srcPath, { withFileTypes: true })
   const svgFiles = files.filter(dirent => dirent.isFile() && dirent.name.match(/\.svg$/))
+  const targetFiles = UPDATE
+    ? svgFiles
+    : svgFiles.filter(
+        ({ name }) => !fs.existsSync(path.resolve(getTargetDirectory(name, outputPath).dirPath, 'index.d.ts'))
+      )
 
-  const filesCount = svgFiles.length
+  const filesCount = targetFiles.length
   const relativeSource = path.relative('.', srcPath)
+  const relativeTarget = path.relative('.', outputPath)
+  const skippedFiles = UPDATE ? 0 : svgFiles.length - filesCount
+  if (skippedFiles) {
+    console.log(chalk.blue(`Skipping ${skippedFiles} files in ${relativeSource} already in ${relativeTarget}`))
+  }
   if (!filesCount) {
     console.log(chalk.blue(`No SVG files to convert in ${relativeSource}`))
     return
   }
   console.log(
-    chalk.blue(`Converting ${filesCount} SVG file${svgFiles.length === 1 ? '' : 's'} in ${relativeSource}...`)
+    chalk.bold.blue(`Converting ${filesCount} SVG file${filesCount === 1 ? '' : 's'} in ${relativeSource}...`)
   )
 
   let filesConverted = 0
 
-  const convertPromises = svgFiles.map(async ({ name }) => {
+  const convertPromises = targetFiles.map(async ({ name }) => {
     const filePath = path.resolve(srcPath, name)
     const file = await fsp.readFile(filePath)
     const svgContent = file.toString()
@@ -83,23 +97,18 @@ async function convertAllInDir(srcPath, outputPath, srcStoragePath, template) {
 
   await Promise.all(convertPromises)
   const color = filesCount === filesConverted ? 'green' : 'yellow'
-  const relativeTarget = path.relative('.', outputPath)
   console.log(
     chalk.bold[color](
-      `Converted ${filesConverted} of ${filesCount} SVG file${filesCount === 1 ? '' : 's'} to ${relativeTarget}`
+      `Converted ${filesConverted} of ${filesCount} SVG file${filesCount === 1 ? '' : 's'} to ${relativeTarget}\n`
     )
   )
 }
 
 async function convertFile(svgContent, filename, outputPath, template) {
-  const dirName = filename.replace(/\.svg$/, '').replace(/^ic-/, '')
+  const { dirName, dirPath } = getTargetDirectory(filename, outputPath)
   const componentName = upperFirst(camelCase(dirName))
-
-  const dirPath = path.resolve(outputPath, dirName)
   const dirExists = fs.existsSync(dirPath)
-  if (dirExists) {
-    if (!UPDATE) return
-  } else {
+  if (!dirExists) {
     await fsp.mkdir(dirPath, { recursive: true })
   }
 
@@ -115,12 +124,6 @@ async function convertFile(svgContent, filename, outputPath, template) {
   }
 
   return true
-}
-
-async function moveFile(name, srcDirPath, newDirPath) {
-  const oldFilePath = path.resolve(srcDirPath, name)
-  const newFilePath = path.resolve(newDirPath, name)
-  await fsp.rename(oldFilePath, newFilePath)
 }
 
 async function writeWebSvgComponent(svgContent, name, componentDirPath, template) {
@@ -164,6 +167,12 @@ async function writeSvgComponent(name, svgContent, filename, outputPath, templat
 async function writeOrReplaceFile(filePath, fileContent) {
   if (fs.existsSync(filePath)) await fsp.unlink(filePath)
   await fsp.writeFile(filePath, fileContent)
+}
+
+function getTargetDirectory(filename, outputPath) {
+  const dirName = filename.replace(/\.svg$/, '').replace(/^ic-/, '')
+  const dirPath = path.resolve(outputPath, dirName)
+  return { dirName, dirPath }
 }
 
 function getTemplate(isIcon) {
