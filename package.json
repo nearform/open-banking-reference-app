@@ -42,6 +42,8 @@
   "scripts": {
     "build": "run-p build:*",
     "build:web": "expo build:web",
+    "convert-svg": "node scripts/convert-svg.js",
+    "convert-svg:update": "node scripts/convert-svg.js --update",
     "create:env": "cp .env.sample .env && cp server/.env.sample server/.env",
     "doc:serve": "docsify serve -p 4000 docs",
     "deploy": "run-p deploy:*",
