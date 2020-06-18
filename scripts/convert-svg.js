@@ -172,13 +172,13 @@ async function writeOrReplaceFile(filePath, fileContent) {
 }
 
 function getTargetDirectory(filename, outputPath) {
-  const dirName = sanitize(filename.replace(/\.svg$/, '').replace(/^ic-/, ''))
+  const dirName = sanitize(filename.replace(/\.svg$/, ''))
   const dirPath = path.resolve(outputPath, dirName)
   return { dirName, dirPath }
 }
 
 function getComponentName(dirName) {
-  return sanitize(upperFirst(camelCase(dirName)))
+  return sanitize(upperFirst(camelCase(dirName.replace(/^ic-/, ''))))
 }
 
 function sanitize(str) {
@@ -239,7 +239,7 @@ ${componentDirNames
   .map(
     dirName => `  {
     name: '${dirName}',
-  ${itemName}: ${getComponentName(dirName)}
+    ${itemName}: ${getComponentName(dirName)}
   }`
   )
   .join(',\n')}
