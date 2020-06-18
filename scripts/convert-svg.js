@@ -143,20 +143,19 @@ async function writeOrReplaceFile(filePath, fileContent) {
 }
 
 function getTemplate(isIcon) {
-  return ({ template }, opts, { interfaces, componentName, props, jsx, exports }) => {
+  return ({ template }, opts, { imports, interfaces, componentName, jsx, exports }) => {
     const plugins = ['jsx', 'typescript']
     const tsTemplate = template.smart({ plugins })
+    const typedProps = `props: ${isIcon ? 'IconProps' : 'React.SVGProps<SVGSVGElement>'}`
 
-    return tsTemplate.ast`import React from 'react'
+    return tsTemplate.ast`${imports}
 ${isIcon ? "import { IconProps } from '../common'" : ''}
 
 ${interfaces}
 
-function ${componentName} ( ${isIcon ? 'props: IconProps' : props} ) {
-  return (
-    ${jsx}
-  )
-}
+const ${componentName} = ( ${typedProps} ): JSX.Element => (
+  ${jsx}
+)
 
 ${exports}
 `
