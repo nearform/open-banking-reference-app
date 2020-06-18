@@ -172,13 +172,17 @@ async function writeOrReplaceFile(filePath, fileContent) {
 }
 
 function getTargetDirectory(filename, outputPath) {
-  const dirName = filename.replace(/\.svg$/, '').replace(/^ic-/, '')
+  const dirName = sanitize(filename.replace(/\.svg$/, '').replace(/^ic-/, ''))
   const dirPath = path.resolve(outputPath, dirName)
   return { dirName, dirPath }
 }
 
 function getComponentName(dirName) {
-  return upperFirst(camelCase(dirName))
+  return sanitize(upperFirst(camelCase(dirName)))
+}
+
+function sanitize(str) {
+  return str.replace(/[^\w-]/g, '')
 }
 
 function getTemplate(isIcon, sourcePath) {
@@ -217,7 +221,7 @@ async function updateIndex(outputPath, isIcon) {
     const subdirContents = await fsp.readdir(subdirPath, { withFileTypes: true })
     const expectedNames = ['index.d.ts', 'index.native.tsx', 'index.web.tsx']
     if (expectedNames.every(name => subdirContents.some(dirent => dirent.name === name))) {
-      componentDirNames.push(dirent.name)
+      componentDirNames.push(sanitize(dirent.name))
     }
   }
 
