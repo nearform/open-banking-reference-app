@@ -24,7 +24,7 @@ const defaultConfig = {
     parser: 'typescript'
   },
   svgoConfig: {
-    plugins: [{ removeViewBox: false }]
+    plugins: [{ removeViewBox: false }, { removeAttrs: { attrs: ['class', 'filter'] } }]
   }
 }
 const defaultState = { title: false }

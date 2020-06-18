@@ -14,7 +14,7 @@ const Budgetpath = (props: IconProps): JSX.Element => (
       />
     </Defs>
     <G transform="translate(1 -40)" fill="none" fillRule="evenodd" strokeLinecap="round" strokeLinejoin="round">
-      <Use fill="#000" filter="url(#prefix__a)" xlinkHref="#prefix__b" />
+      <Use fill="#000" xlinkHref="#prefix__b" />
       <Use stroke="#FA775E" strokeWidth={4} xlinkHref="#prefix__b" />
     </G>
   </Svg>
