@@ -18,7 +18,7 @@
     "fbemitter": "^2.1.1",
     "i18next": "19.4.2",
     "i18next-browser-languagedetector": "^4.1.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mockdate": "^2.0.5",
     "react": "16.9.0",
     "react-art": "16.9.0",
