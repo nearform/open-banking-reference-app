@@ -10,7 +10,7 @@
     "@hapi/inert": "^6.0.1",
     "@hapi/joi": "^17.1.1",
     "@hapi/vision": "^6.0.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "fastify": "^2.13.1",
     "fastify-cors": "^2.2.0",
