@@ -259,6 +259,28 @@ export const updateConnection = async (id: string, token: string) => {
   }
 }
 
+export const deleteConnection = async ({ id }: Connection) => {
+  const options = {
+    method: 'POST',
+    body: JSON.stringify({
+      id
+    }),
+    headers: {
+      Accept: 'application/json'
+    },
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'include'
+  }
+
+  const response = await request(`Connection/${id}/rm`, options)
+
+  if (!response.ok) {
+    console.error(response)
+    throw new Error('Error deleting connection')
+  }
+}
+
 export const createBalanceMonitor = async (connection: string, threshold: string, amount: string) => {
   const options = {
     method: 'POST',
