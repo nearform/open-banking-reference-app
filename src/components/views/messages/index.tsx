@@ -1,6 +1,6 @@
 import React, { useState, useRef, MutableRefObject } from 'react'
 import { compose, connect, AppState, Dispatch } from 'store'
-import { View, StyleSheet, FlatList, TextInput } from 'react-native'
+import { KeyboardAvoidingView, View, StyleSheet, FlatList, TextInput, Platform } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { differenceInDays } from 'date-fns'
 
@@ -50,7 +50,7 @@ export const Messages: React.FC<Props> = ({ messages, sendMessage }) => {
   }
 
   return (
-    <View style={styles.view}>
+    <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height"} keyboardVerticalOffset={90} style={styles.view}>
       <Subheader title={t('messages:title')} hideBackButton />
       <View style={styles.messages}>
         {messages && (
@@ -79,7 +79,7 @@ export const Messages: React.FC<Props> = ({ messages, sendMessage }) => {
           <Icon name="question-mark" width="24" height="24" />
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   )
 }
 
