@@ -14,7 +14,7 @@
     "dotenv": "^8.2.0",
     "fastify": "^2.13.1",
     "fastify-cors": "^2.2.0",
-    "got": "^9.6.0",
+    "got": "^11.8.5",
     "hapi-pino": "^6.5.0",
     "hapi-swagger": "^13.0.0",
     "ibm-watson": "^5.5.0",
